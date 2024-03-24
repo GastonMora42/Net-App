@@ -1,0 +1,194 @@
+Unnamed: 0,"00:00 Axel Meta: Hola gatón, cómo te va?",Transcript delivered by Tactiq.io - get it for your Google Meet today!
+,00:01 Gaston Mora: Hola qué tal,
+,"00:02 Axel Meta: Bien, vos.",
+,00:03 Gaston Mora: todo bien.,
+,"00:04 Axel Meta: A ver, vamos a ver qué está pasando.",
+,"00:07 Gaston Mora: A ver, tengo contenido en las celdas. Y mira a ver, voy a compartir su pantalla.",
+,"00:19 Axel Meta: O sea, solo te sale como el la fila uno.",
+,00:28 Gaston Mora: Estás viendo ahí?,
+,00:30 Axel Meta: para qué lo estás usando vos a,
+,00:36 Gaston Mora: Dame un segundo que conecto la compu.,
+,"00:42 Gaston Mora (chat): Hola a todos, este es un mensaje automático para informarles que mi extensión Tactiq (https://tactiq.io/r/transcribing) está transcribiendo esta reunión para que pueda brindarles toda mi atención.",
+,00:45 Axel Meta: WhatsApp,
+,"00:47 Gaston Mora: Para enviar mensajes Quiero enviar mensajes a los clientes cuando lleguen a cierta cantidad de puntos en la celda. mira Ahí Solo estás viendo el mit no, el make, perdón. viste que acá Dice Brenda Bianchi",
+,01:07 Axel Meta: OK,
+,"01:09 Gaston Mora: ese y acá dice 20 2 esos esto lo el contenido que yo tengo las celdas de esa fila. Pero al enviar el mensaje, me aparece, no me aparece nada Es como si se enviar un mensaje vacío.",
+,"01:25 Axel Meta: a ver, me puedes mostrar cómo te se",
+,01:25 Gaston Mora: entendiendo que porque,
+,01:27 Axel Meta: envió un mensaje o ni siquiera se envió con,
+,"01:30 Gaston Mora: Sí el mensaje se envía perfectamente Yo acá, si le escribo Hola cómo",
+,01:36 Axel Meta: ok No salen las variables.,
+,"01:36 Gaston Mora: estás. Se envía perfecto y las variables salen. Pero lo que lee es lo de la derecha, por ejemplo, si yo le mando la variable sheets, le llega a puntos.",
+,"01:50 Axel Meta: Ah claro, No no, eso es Lógico es como funciona make tenés que escribir vos s***. Make, solo pasa el texto de la celda, no, no, el nombre de la celda.",
+,"02:03 Gaston Mora: Ah y cómo hago por ejemplo, si Mira dame dos segundos que te comparto también. Cómo hago para que se pase Brenda Bianchi por ejemplo",
+,"02:17 Axel Meta: Brenda Bianchi es el nombre de la columna, no?",
+,02:21 Gaston Mora: Es el nombre claro de la celda.,
+,"02:24 Axel Meta: Claro, lo que tendrías que hacer es crear otra columna. En Google sheet donde vos combines el nombre de la celda con el valor que tenga. Y así se pasa.",
+,"02:38 Gaston Mora: A ver, te voy a compartir, te voy a compartir el Google sheets. A ver nada acá ya estaba probando de 10.000 maneras. Yo acá Tengo este que es el valor que",
+,02:57 Axel Meta: nombre,
+,02:58 Gaston Mora: le Quiero compartir al cliente que sería Brenda Bianchi cómo lo tendría que colocar,
+,"03:04 Axel Meta: Se aprende bien, es lo que quieres Enviar no.",
+,03:07 Gaston Mora: correcto,
+,03:15 Axel Meta: Pero anda Volver al make.,
+,03:19 Gaston Mora: mejor la,
+,03:23 Axel Meta: y el escritorio más fácil,
+,03:46 Axel Meta: Ok Brenda bianki Es que sabes lo que pasa que lo que está en verde Eso no eso es como una variada eso es el nombre de la columna para make y solo va a pasar donde pone puntos 32 entonces vos tendrías que escribir. Brenda Bianchi es que lo raro es que no es una columna como lo tenés pero es como si estuviese.,
+,04:12 Gaston Mora: si no modifico modifico acá el el,
+,"04:17 Axel Meta: Claro vos tenés que hacer que A ver, volvemos a un segundo al mes que miro que es el qué variable está enviando. En Brenda Bianchi Ah no pone nada Tres puntos y la otra fuera uno que",
+,04:31 Gaston Mora: fondo,
+,04:31 Axel Meta: pone que pone 32 espera vamos a la uno a el s***.,
+,04:35 Gaston Mora: Viste Bueno yo uno a sería esta? No sé de dónde saca 32.,
+,"04:39 Axel Meta: Y el 32, dónde sale?",
+,04:42 Gaston Mora: Viste me Estaba volviendo loco.,
+,"04:45 Axel Meta: Sí, No estarás. Estás en la en la s***, no estás? Estás en la de puntos no estás en la de datos, no?",
+,04:52 Gaston Mora: Estoy en una de punto. Ya me voy acá. puntos Algún error tiene que haber en algún lado y no no?,
+,"05:03 Axel Meta: Sí, no, el tema el tema es cuando lo verde sale así es que eso no te lo pasa nunca make. Entonces vos tenés que conseguir que lo verde pase a estar en en texto gris.",
+,"05:15 Gaston Mora: Claro claro, Sí sí, hasta ahí lo lo",
+,05:19 Axel Meta: Sí pero no sé por qué no te está dejando.,
+,05:24 Gaston Mora: Ah bien Bueno voy a seguir probando,
+,"05:24 Axel Meta: Pero si eso sí, sí, Espérame pero vos",
+,05:26 Gaston Mora: voy a seguir probando.,
+,05:28 Axel Meta: querés Enviar mensaje a cuántos números a todos los clientes?,
+,05:33 Gaston Mora: Son 50 clientes aproximadamente.,
+,"05:37 Axel Meta: Okay, Porque no te va a hacer Bueno te va a salir cara a hacerlo con con WhatsApp lo que estamos hacer porque nosotros cobramos por número de teléfono el que envías.",
+,"05:46 Gaston Mora: Ah bien, claro",
+,05:47 Axel Meta: Lo que están así lo que estamos haciendo es en teoría en tres días lanzamos un coso un nuevo sistema que te permite enviarle mensajes a tipo a los clientes que quieras. Que te va a salir más económico.,
+,06:01 Gaston Mora: Ah bueno ahora a lo largo enseguida en un par de días.,
+,06:05 Axel Meta: En teoría siente no estamos a tres días de lanzamiento.,
+,06:08 Gaston Mora: Ah buenísimo bueno bueno,
+,06:10 Axel Meta: Si querés Dame tu poneme tu WhatsApp acá en el chat y yo te envío un mensaje ya desde el nuevo sistema también para que veas cómo es cuando llegan.,
+,"06:18 Gaston Mora: y sabemos o menos, cuánto va a salir cuando va a costar?",
+,06:20 Axel Meta: Y este siete te digo a cuánto a 50,
+,06:24 Gaston Mora: más o menos,
+,06:25 Axel Meta: personas no tenés que enviar.,
+,"06:28 Gaston Mora: sí, entre 50 y 100 seguramente más de eso no van a ser. Voy a poner un límite.",
+,06:34 Axel Meta: Ok y cuántos mensajes tienes que enviarle a esas personas? por mes,
+,06:39 Gaston Mora: por mes,
+,06:41 Axel Meta: sí,
+,06:45 Gaston Mora: es más o menos. un promedio de cada persona 15 mensajes A cada persona,
+,07:07 Axel Meta: Okay Vale seguramente esté por los entre los 30 y 40 dólares,
+,"07:15 Gaston Mora: Okay, okay.",
+,07:15 Axel Meta: al mes,
+,"07:16 Gaston Mora: Okay. Okay, okay. Bueno, bueno, probamos.",
+,"07:22 Axel Meta: 10 Sí porque va a haber un plan que son cuatro, puedes enviar hasta cuatro mensajes A cada número. Hasta cien números por 24 dólares al mes y ellos te incluye 5 dólares en créditos, es decir 19 al mes más cinco dólares que tenés para enviar mensajes en créditos. Pero vos tendrías que habría que extender tu límite de cuatro mensajes, a que puedas enviar 15 mensajes A cada número.",
+,"07:47 Gaston Mora: Ah claro, perfecto. Okay entiendo.",
+,07:50 Axel Meta: Que si por ahí va a estar.,
+,07:53 Gaston Mora: Bueno dale buenísimo.,
+,07:54 Axel Meta: Igual Sí cualquier cosa me avisas si,
+,07:57 Gaston Mora: Te aviso.,
+,"07:58 Axel Meta: querés dame tu WhatsApp y yo te envío un mensaje apenas, lo tengamos listo y así lo puedes usar. Dale",
+,,
+,,
+,View the full transcript to edit highlights and get access to screenshots and attached recordings.,
+,,
+,,
+,,View the full transcript to edit highlights and get access to screenshots and attached recordings.
+,,Highlights
+,,Use the highlighting tool in Tactiq during the meeting to collect all highlights in this section.
+,,
+,,
+,,Transcript
+,,"00:00 Matias Goya: Publicitándonos y con eso te llevaba un porcentaje, no me gustó."
+,,00:07 Gaston Mora: Me pedía que reinicie ahora ahora tendría que dejar. Ahí.
+,,00:32 Matias Goya: Ahora sí.
+,,00:37 Gaston Mora: ahora ejecuto el Script ese que es el que rastrea el archivo lo señaliza lo manda Google
+,,00:43 Matias Goya: ok
+,,"01:15 Gaston Mora: Acá te pide está que está para que haga la autenticación autenticación de Google Drive manualmente, después eso se pone para que lo haga automáticamente con con una clave y listo esto no lo tenés que hacer."
+,,"01:29 Gaston Mora (chat): Hola a todos, este es un mensaje automático para informarles que mi extensión Tactiq (https://tactiq.io/r/transcribing) está transcribiendo esta reunión para que pueda brindarles toda mi atención."
+,,01:29 Bruno Torossi: Bien.
+,,01:31 Gaston Mora: Le das los permisos. Ha sido completa y ahí sí. documento de Google más reciente
+,,01:40 Matias Goya: Bien.
+,,01:42 Gaston Mora: mitin transcription ta ta ta ta ta ta ta ta importando bueno y haces todos los procesos ahí está importando el modelo. Salta error porque ya está el modelo. O sea ya
+,,02:10 Bruno Torossi: Okay.
+,,"02:18 Gaston Mora: ahí lo tendría que estar copiando a Google completada Y este tendría que ser el meeting de recién, si no me equivoco ahora."
+,,02:34 Matias Goya: No decía el 31 del 1.
+,,02:36 Gaston Mora: 31 del 1 Ah debe ser alguno quizás ayer antes de ayer. Capaz que no se guardó el de recién como se cerró automático ni siquiera me arrojó.
+,,02:46 Matias Goya: Ah!
+,,02:48 Gaston Mora: capaz
+,,02:48 Bruno Torossi: No claro
+,,"02:52 Matias Goya: O capaz no terminó, no sé."
+,,"02:55 Gaston Mora: no sé haber llegado a guardar porque se guarda Cuando vos cortas, la llamada. Portás y automáticamente te manda el taxi, se redirige al táctil y ahí se ve que en ese proceso te lo guardo."
+,,03:09 Matias Goya: Ah bien después cuando cuando pueda volvete a la pantalla del
+,,03:25 Gaston Mora: Dale Les quería Mostrar acá hasta donde se va y dónde se almacena? Acá Esto es lo que te acordás Bruno
+,,03:51 Matias Goya: Y por qué?
+,,03:53 Gaston Mora: que me habías dado acceso a Google que habíamos hecho todo esto. acá esto si vos entras acá vas a Google Cloud
+,,04:02 Bruno Torossi: sí
+,,04:03 Gaston Mora: storage en baquets encontrás este que es
+,,04:09 Bruno Torossi: el modelo
+,,04:09 Gaston Mora: donde se es la carpeta donde se va guardando todo.
+,,04:13 Bruno Torossi: Ah ok en
+,,04:15 Gaston Mora: los modelos reentrenados y el los Data sets serializados Es donde se va a ir guardando.
+,,04:21 Bruno Torossi: perfecto
+,,04:25 Gaston Mora: todo tenés que cuando entres a Google Cloud tenés que fijarte que estés acá en
+,,"04:31 Bruno Torossi: Sí sí, sí, ahí te"
+,,"04:32 Gaston Mora: porque por ahí Abre otra vez, por ejemplo yo tengo."
+,,04:34 Bruno Torossi: tenés otro proyecto Sí él te va guardando Tenés que ir a tu espacio de
+,,04:40 Gaston Mora: Claro claro
+,,04:47 Matias Goya: llegaste y nosotros lo estamos guardando recordame lo estamos guardando acá y no en no sé una carpeta de Google Drive porque
+,,04:56 Gaston Mora: Porque de ahí después es de donde podés hacer la inferencia con el modelo para que con los scripts se reentrene solo desde Google Drive no podés.
+,,05:05 Bruno Torossi: Para que se consuma para que el modelo lo consuma directamente tiene
+,,05:07 Matias Goya: Ah!
+,,05:10 Gaston Mora: para que el modelo
+,,05:10 Bruno Torossi: que estar ahí.
+,,05:13 Gaston Mora: porque todo esto está serializado vos entrar acá y no lo podés leer así.
+,,"05:19 Matias Goya: Okay okay, pero la Data está"
+,,05:22 Gaston Mora: La Data está claro el tema es que no es un archivo legible es un punto dbc.
+,,05:26 Matias Goya: claro
+,,"05:27 Gaston Mora: Es un archivo que o sea, con la carne, debe ser un programa que te lo señaliza números para que después lo lo consuma, el modelo y Se entrena."
+,,"05:36 Matias Goya: Okay. Okay Okay bien Che y el táctica Este era re barato, no?"
+,,"05:46 Gaston Mora: No me acuerdo cuánto sale Pero sí, no era caro Che Te cobra por segundo puede ser."
+,,"05:53 Bruno Torossi: No, no O sea buenos pasaste algo que Comparado súper normal?"
+,,05:59 Gaston Mora: Había pasado Me parece que el chat no del grupo sinceramente.
+,,"06:02 Bruno Torossi: Sí sí, fíjate ahí arriba."
+,,06:34 Matias Goya: A ver el free son 10 10 transcripciones por mes. pero son ilimitadas las transcripciones
+,,06:51 Bruno Torossi: Ok y el Pro cuánto sale?
+,,06:51 Matias Goya: 12
+,,06:56 Bruno Torossi: 12 al mes
+,,"06:56 Matias Goya: y el team Ah bueno Y el de doce se da 10 créditos de IP por mes. Que esos 10 créditos, después va a estar en ella."
+,,"07:22 Bruno Torossi: claro, Nosotros con y nosotros ahora con o sea, con el nivel de de cols, o sea, con la cantidad de cosas que tenemos que no llegamos. Tendremos no O sea tendremos capaz las diez por mes. Podríamos usar el el free o hay algo que vos necesites gaste y aparte de la cantidad de digamos que consume. Por lo cual sea como tenés otra feature que por la cual eso hay que pagar el proponerle o solo depende de eso de la cantidad de de cols que tengamos."
+,,"07:56 Gaston Mora: No no es depende, o sea, por lo menos en lo que implica todo el proceso, no? No, necesitas ningún otro requerimiento, incluso acá me dice la"
+,,08:06 Bruno Torossi: Buenísimo.
+,,08:07 Gaston Mora: transcripción quedan seis reuniones gratuitas este mes. Y lo estuve probando va igual ya
+,,08:10 Bruno Torossi: Okay.
+,,"08:12 Gaston Mora: estamos en febrero capaz que se actualizó. Pero si te da si alcanzan con las reuniones no, no tendría que"
+,,08:23 Bruno Torossi: Bien.
+,,08:23 Gaston Mora: incluso una función que te dejan lanzarlo con Google Drive es gratuito. Un golazo está aquí.
+,,"08:36 Bruno Torossi: Sí, lo que se vio Ahí Toma bastante bien todo."
+,,"08:38 Gaston Mora: No vi que tecnología usan capaz que tienen documentación y puede haber qué modelos usan viste porque anda excelente. Pero deben usar gpt cuatro para el resumen, no?"
+,,"08:52 Matias Goya: Puede ser. Sí, puede ser. gpt 4 turbo"
+,,09:04 Gaston Mora: se lo deben usar para hacer
+,,09:09 Bruno Torossi: Y la transcripción que será whisper o algo de eso.
+,,09:16 Matias Goya: No es al revés.
+,,09:18 Bruno Torossi: Es al revés o no?
+,,09:18 Gaston Mora: es al revés Sí sí es al revés.
+,,"09:21 Bruno Torossi: Sí, es al revés, Ah claro, claro, Sí lo entrenas con la voz y toma el texto."
+,,09:29 Matias Goya: Bueno no sé qué
+,,"09:32 Gaston Mora: No sé, porque aparte no capta el sonido ambiente capta directamente. integrados capaz que tiene documentación y te dice"
+,,09:51 Matias Goya: Bueno muy buena noche bueno y Cuáles serían los los próximos pasos a ti
+,,"09:58 Gaston Mora: próximos pasos Sería bueno hacer el Script que limpia todo y te prepara el resumen Y de ahí ya. seguir con esto O sea esa esa parte la de limpiar y generar el resumen de todo los medio se integra con con esta parte de traquear El último documento y subirlo a Google de ahí, ya sigue todos los pasos que iba a hacer en un principio que era lo de hacer los Script que se reentrena el modelo y que se Hace diferencia desde desde un desde una Api para que lo puedan usar en una página web?"
+,,10:37 Matias Goya: bien.
+,,"10:39 Gaston Mora: yo creo que esto es por ahí, es lo que más me demoró porque tuve que buscar a ver cómo cómo carajos hacía, pero pero después lo otro vamos rápido."
+,,"10:49 Matias Goya: Okay, okay. Okay, Mira para para hacerte sincero. Nosotros no nos gustaría seguir laburando con vos. El tema es que nada se nos va un poco de presupuesto esta primera parte. Nada, la teníamos en nuestra cabeza mucho más más tranqui, por eso incluso De hecho, no habíamos contratado un deber para esta primera parte dijimos Bueno nos va a poder dar una mano que nada no, no pudo. y nada si nos haces un descuento por Por todo el laburo de encargarte porque serían cuatro cuatro cincuenta esta primera parte."
+,,11:33 Matias Goya: Y cinco cincuenta en la segunda parte que nos hayas presupuestado que ahí nos quedan. Mil en el de los cuales Solamente ya sepamos solamente 150.
+,,"11:47 Gaston Mora: Dale sí, sí, armamos algo, le damos forma como como ustedes vean También si hay que ver la manera de pago también si lo quieren pagar después o una parte ahora sí, no?"
+,,11:58 Matias Goya: Dale dale
+,,11:59 Gaston Mora: La idea que va para mí Yo también la quiero ver funcionando porque ya fue todo un reto para mí hacer todo esto y buscando la información conectar todo.
+,,12:09 Matias Goya: No aparte para nosotros o sea es una es la herramienta de trabajo entonces Obviamente que queremos hacerlo con vos porque sabemos que que lo va a hacer bien pero a su vez no podemos no podemos empezar a generar ingresos sin Sin tener esto viste entonces como que que viene primero.
+,,"12:29 Gaston Mora: Olvídate Sí sí sí, porque es un lindo"
+,,"12:33 Bruno Torossi: esto esto que planteamos ahora en estas etapas es como lo lo que se nos ocurrió básico que necesitamos para arrancar para tener un producto que nos sirva que que sirva a clientes, pero después O sea la idea es Futuros que se nos ocurran e ir mejorandolo y que siga que se siga desarrollando como como producto no O sea no, no pensamos que está terminado digamos en estas en estas dos fases digamos."
+,,"13:08 Gaston Mora: producto, se le pueden ir agregando cosas."
+,,"13:10 Matias Goya: sí, ni hablar y de hecho nuestra idea con Bruno es toda la plata que podamos ir facturando reinvertirla O sea 100% no, no esperamos desde el principio así extraer valor sino Cada diez que cerremos y agarremos comisión. Seguir reinvirtiéndolo eso puede ser Che optimicemos mejor tal cosa Che hagamos un newsletter de no sé qué todo automatizado hagamos."
+,,13:43 Gaston Mora: aburrido mientras lo hacía dije le va a venir para bien para
+,,"13:47 Bruno Torossi: Primero primero va a ser en esto en desarrollar el producto, o sea,"
+,,13:53 Gaston Mora: esto
+,,"13:54 Bruno Torossi: hacerlo lo mejor posible, además también el hecho de tener clientes y que lo hayan probando nos va a dar a nosotros el feedback para mejorarlo digamos, o sea, entonces ahí va a ser como una retroalimentación para mejorarlo y después bueno, obviamente cuando tengamos algo que consideramos que está. A un buen nivel o estar ya bien desarrollado, si seguir por ahí la la reinversión va a ir más por el lado de gross y de Buscar ampliar."
+,,"14:28 Bruno Torossi: el mercado digamos Pero bueno La idea, es primero pulir bien del producto y tener algo, o sea, yo creo que Que puede salir algo muy bueno con esto, así que es meterle la ficha."
+,,"14:41 Gaston Mora: Yo creo que va a salir un lindo lindo producto así como ven vi pico para ir probando y que ya vaya caminando de a poquito para ir dándose cuenta a ver que funciona que no viste, pero pero creo que de entrada va a quedar algo copado funcional."
+,,14:56 Matias Goya: excelente excelente
+,,14:57 Gaston Mora: Está bastante claro lo que se quiera
+,,14:57 Bruno Torossi: Ahí.
+,,"14:58 Gaston Mora: hacer y o sea, está bastante Clara como que no digo hagas mucho y empezás a darle cualquier otra salida al modelo, vas directo a eso."
+,,"15:09 Matias Goya: Bueno entonces Justin si te parece a hermanos míos, una otra propuesta actualizada Con todo O sea porque o sea, ya queremos hacer con vos y seguimos"
+,,
+,,
+,,View the full transcript to edit highlights and get access to screenshots and attached recordings.

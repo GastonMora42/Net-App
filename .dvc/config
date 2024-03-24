@@ -1,0 +1,8 @@
+[core]
+    remote = myremote
+['remote "myremote"']
+    url = gdrive://1T54m4fmnMr-GSznRhdT7YU3mhaCOWerB
+    gdrive_service_account_json_file_path = /Users/gastonmora/Desktop/Net-App/netsquared-407819-9ddae082973b.json
+    gdrive_service_account_user_email = gastonmora1742@gmail.com
+['remote "model-tracker"']
+    url = gs://model-dataset-netsquared-tracker/model
