@@ -43,7 +43,7 @@ def download_latest_google_doc(drive, folder_id, local_file_name):
 
 def main():
     folder_id = '1T54m4fmnMr-GSznRhdT7YU3mhaCOWerB'
-    local_file_name = '/Users/gastonmora/Desktop/Net-App/src/dataset/ultimo_documento.docx'
+    local_file_name = '/Users/gastonmora/Desktop/Net-App/dataset/ultimo_documento.docx'
 
     configure_google_cloud_storage()
     drive = configure_google_drive()

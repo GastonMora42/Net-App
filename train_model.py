@@ -65,7 +65,7 @@ embeddingopenai = OpenAIEmbeddings(
 
 logger.info("Cargando data resumida...")
 
-loader = CSVLoader(file_path='/Users/gastonmora/Desktop/Net-App/src/dataset/resumen-contacts.csv')
+loader = CSVLoader(file_path='/Users/gastonmora/Desktop/Net-App/dataset/resumen-contacts.csv')
 data = loader.load()
 
 NOMBRE_INDICE_CHROMA = "datos-vectorial"
@@ -100,6 +100,3 @@ qa_chains_whith_sources = RetrievalQAWithSourcesChain.from_chain_type(
     chain_type="stuff",
     retriever=retriever_chroma
 )
-
-
-

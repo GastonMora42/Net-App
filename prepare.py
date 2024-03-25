@@ -29,7 +29,7 @@ contacts_data = pd.read_csv(StringIO(ruta_dvc))
 
 logging.info("Leeyendo el archivo CSV y carga su contenido en una lista de listas")
 
-with open('/Users/gastonmora/Desktop/Net-App/src/dataset/Contacts-Main View.csv', newline='') as csvfile:
+with open('/Users/gastonmora/Desktop/Net-App/dataset/Contacts-Main View.csv', newline='') as csvfile:
     csvreader = csv.reader(csvfile)
     data = list(csvreader)
 
