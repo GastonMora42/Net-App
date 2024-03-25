@@ -29,9 +29,9 @@ def merge_csvs(input_csv, output_csv):
 
 if __name__ == "__main__":
     # Rutas de los archivos
-    input_docx_file = '/Users/gastonmora/Desktop/Net-App/dataset/ultimo_documento.docx'
-    output_csv_file = '/Users/gastonmora/Desktop/Net-App/dataset/output.csv'
-    temporary_csv_file = '/Users/gastonmora/Desktop/Net-App/dataset/temporary.csv'
+    input_docx_file = '/dataset/ultimo_documento.docx'
+    output_csv_file = '/dataset/output.csv'
+    temporary_csv_file = '/dataset/temporary.csv'
 
     # Convertir documento de Word a CSV
     convert_docx_to_csv(input_docx_file, temporary_csv_file)
