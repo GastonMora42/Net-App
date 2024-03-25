@@ -1,25 +1,18 @@
 import os
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
+from oauth2client.service_account import ServiceAccountCredentials
 
 def configure_google_drive():
     gauth = GoogleAuth()
-    
+
     # Obtener el token de acceso desde la variable de entorno
     access_token = os.getenv('MYCREDSGOOGLE')
 
-    if gauth.credentials is None:
-        # Autenticar por primera vez
-        gauth.LocalWebserverAuth()
-    elif gauth.access_token_expired:
-        # Refrescar el token si está expirado
-        gauth.Refresh()
-    else:
-        # Autorización válida
-        gauth.Authorize()
-
-    # Configurar el token de acceso
-    gauth.credentials.access_token = access_token
+    # Configurar las credenciales con el token de acceso
+    scope = ['https://www.googleapis.com/auth/drive']
+    creds = ServiceAccountCredentials.from_json_keyfile_dict(access_token, scope)
+    gauth.credentials = creds
 
     drive = GoogleDrive(gauth)
     return drive
