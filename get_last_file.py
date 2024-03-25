@@ -8,20 +8,20 @@ def configure_google_drive():
     gauth = GoogleAuth()
 
     # Obtener el token de acceso desde la variable de entorno
-    access_token = os.getenv('MYCREDSGOOGLE')
+    access_token_json = os.getenv('MYCREDSGOOGLE')
 
-    if access_token is None:
+    if access_token_json is None:
         raise ValueError("No se encontró el token de acceso en la variable de entorno MYCREDSGOOGLE")
 
     # Cargar el token de acceso desde la cadena JSON
     try:
-        creds_dict = json.loads(access_token)
+        creds_dict = json.loads(access_token_json)
     except json.JSONDecodeError as e:
         raise ValueError("El token de acceso no está en formato JSON válido") from e
 
     # Configurar las credenciales con el token de acceso
-    scope = ['https://www.googleapis.com/auth/drive']
-    creds = ServiceAccountCredentials.from_service_account_info(creds_dict, scopes=scope)
+    scopes = ['https://www.googleapis.com/auth/drive']
+    creds = ServiceAccountCredentials.from_service_account_info(creds_dict, scopes=scopes)
     gauth.credentials = creds
 
     drive = GoogleDrive(gauth)
@@ -56,3 +56,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
