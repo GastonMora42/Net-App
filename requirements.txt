@@ -9,5 +9,5 @@ numpy>=1.21.0
 retriever>=0.2.0
 tiktoken
 dvc
-docx
+python-docx
 chromadb
