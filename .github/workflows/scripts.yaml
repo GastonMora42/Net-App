@@ -1,0 +1,58 @@
+name: Run Scripts
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 */4 * * *'
+  workflow_dispatch:
+    inputs:
+      reason:
+        description: Why to run this?
+        required: false
+        default: running CT
+
+jobs:
+  continuous_training:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Configurar Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'  # Define la versión de Python que necesitas
+
+
+      - name: Install dependencies
+        run: |
+          pip3 install virtualenv
+          virtualenv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+
+          echo "Dependencies Installed"
+
+      - name: Set up OpenAI API key
+        run: |
+          echo "export OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
+          echo "set name=OPENAI_API_KEY::${{ secrets.OPENAI_API_KEY }}"
+
+          env:
+          NETJSON: ${{ secrets.NETJSON }}  
+          env:
+          MYCREDSGOOGLE: ${{ secrets.MYCREDSGOOGLE }}
+
+      - name: Run Python Scripts
+        run: |
+          source venv/bin/activate  # Activar entorno virtual
+          python src/get_last_file.py  # Ejecutar script1 desde src
+          python src/convert.py  # Ejecutar script2 desde src
+          python src/tracker.py  # Ejecutar script3 desde src
+          python src/prepare.py  # Ejecutar script4 desde src
+          python src/train_model.py  # Ejecutar script5 desde src
+
+          echo "Scripts Completed"
