@@ -40,7 +40,6 @@ jobs:
       - name: Set up OpenAI API key
         run: |
           echo "export OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
-          echo "export NETJSON=${{ secrets.NETJSON }}" >> $GITHUB_ENV
           echo "export MYCREDSGOOGLE=${{ secrets.MYCREDSGOOGLE }}" >> $GITHUB_ENV
 
       - name: Run Python Scripts
