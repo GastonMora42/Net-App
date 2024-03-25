@@ -1,14 +1,26 @@
 import subprocess
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
+import os
 
 def configure_google_cloud_storage():
-    subprocess.run(['gcloud', 'auth', 'activate-service-account', '--key-file', 'netsquared-407819-9ddae082973b.json'])
+    gcloud_auth = os.getenv('NETJSON')
+    with open('temp.json', 'w') as f:
+        f.write(gcloud_auth)
+
+    subprocess.run(['gcloud', 'auth', 'activate-service-account', '--key-file', 'temp.json'])
+
+    # Eliminar archivo temporal
+    os.remove('temp.json')
 
 def configure_google_drive():
     gauth = GoogleAuth()
     # Cargar o crear las credenciales en un archivo
     gauth.LoadCredentialsFile("mycreds.txt")
+
+    # Obtener el token de acceso desde la variable de entorno
+    access_token = os.getenv('MYCREDSGOOGLE')
+
     if gauth.credentials is None:
         # Autenticar por primera vez
         gauth.LocalWebserverAuth()
@@ -18,8 +30,13 @@ def configure_google_drive():
     else:
         # Autorización válida
         gauth.Authorize()
+
+    # Configurar el token de acceso
+    gauth.credentials.access_token = access_token
+
     # Guardar las credenciales actualizadas
     gauth.SaveCredentialsFile("mycreds.txt")
+
     drive = GoogleDrive(gauth)
     return drive
 

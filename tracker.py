@@ -2,9 +2,17 @@ import subprocess
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 from datetime import datetime
+import os 
 
 def configure_google_cloud_storage():
-    subprocess.run(['gcloud', 'auth', 'activate-service-account', '--key-file', 'netsquared-407819-9ddae082973b.json'])
+    gcloud_auth = os.getenv('NETJSON')
+    with open('temp.json', 'w') as f:
+        f.write(gcloud_auth)
+
+    subprocess.run(['gcloud', 'auth', 'activate-service-account', '--key-file', 'temp.json'])
+
+    # Eliminar archivo temporal
+    os.remove('temp.json')
 
 
 def track_and_push():
