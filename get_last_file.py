@@ -1,23 +1,10 @@
-import subprocess
+import os
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
-import os
-
-def configure_google_cloud_storage():
-    gcloud_auth = os.getenv('NETJSON')
-    with open('temp.json', 'w') as f:
-        f.write(gcloud_auth)
-
-    subprocess.run(['gcloud', 'auth', 'activate-service-account', '--key-file', 'temp.json'])
-
-    # Eliminar archivo temporal
-    os.remove('temp.json')
 
 def configure_google_drive():
     gauth = GoogleAuth()
-    # Cargar o crear las credenciales en un archivo
-    gauth.LoadCredentialsFile("mycreds.txt")
-
+    
     # Obtener el token de acceso desde la variable de entorno
     access_token = os.getenv('MYCREDSGOOGLE')
 
@@ -33,9 +20,6 @@ def configure_google_drive():
 
     # Configurar el token de acceso
     gauth.credentials.access_token = access_token
-
-    # Guardar las credenciales actualizadas
-    gauth.SaveCredentialsFile("mycreds.txt")
 
     drive = GoogleDrive(gauth)
     return drive
@@ -57,14 +41,13 @@ def download_latest_google_doc(drive, folder_id, local_file_name):
 
     print(f"El último documento se ha descargado exitosamente como {local_file_name}")
 
-
 def main():
     folder_id = '1T54m4fmnMr-GSznRhdT7YU3mhaCOWerB'
     local_file_name = '/Users/gastonmora/Desktop/Net-App/dataset/ultimo_documento.docx'
 
-    configure_google_cloud_storage()
     drive = configure_google_drive()
     download_latest_google_doc(drive, folder_id, local_file_name)
 
 if __name__ == "__main__":
     main()
+
