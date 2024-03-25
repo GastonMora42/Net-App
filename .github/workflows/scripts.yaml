@@ -41,6 +41,7 @@ jobs:
         run: |
           echo "export OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}" >> $GITHUB_ENV
           echo "export MYCREDSGOOGLE=${{ secrets.MYCREDSGOOGLE }}" >> $GITHUB_ENV
+          echo "export NETJSON_B64=${{ secrets.NETJSON }}" >> $GITHUB_ENV
           echo "NETJSON=$(echo $NETJSON_B64 | base64 -d)" >> $GITHUB_ENV
 
       - name: Run Python Scripts
