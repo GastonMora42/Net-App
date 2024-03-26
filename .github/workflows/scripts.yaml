@@ -17,6 +17,9 @@ on:
 jobs:
   continuous_training:
     runs-on: ubuntu-latest
+    env:
+          OPENAI_API_KEY: ${{ env.OPENAI_API_KEY }}
+          REFRES_TOKEN_GOOGLE: ${{ env.REFRES_TOKEN_GOOGLE }}
 
     steps:
       - name: Checkout repo
@@ -33,19 +36,15 @@ jobs:
           pip3 install virtualenv
           virtualenv venv
           source venv/bin/activate
-          pip cache purge
           pip install -r requirements.txt
 
           echo "Dependencies Installed"
 
       - name: Set up OpenAI API key
-        env:
-          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
-          REFRES_TOKEN_GOOGLE: ${{ secrets.REFRES_TOKEN_GOOGLE }}
-          NETJSON: ${{ secrets.NETJSON }}
+    
         run: |
-          export OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
-          export REFRES_TOKEN_GOOGLE=${{ secrets.REFRES_TOKEN_GOOGLE }}
+          export OPENAI_API_KEY
+          export REFRES_TOKEN_GOOGLE
           export NETJSON=$(python utilities/setter_service.py)
 
       - name: Run Python Scripts
