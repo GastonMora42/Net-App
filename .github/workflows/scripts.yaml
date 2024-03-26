@@ -42,6 +42,8 @@ jobs:
         run: |
           export ${{ secrets.OPENAI_API_KEY }}
           echo  ${{ secrets.OPENAI_API_KEY }} 
+          export ${{ secrets.REFRES_TOKEN_GOOGLE }}
+          echo  ${{ secrets.REFRES_TOKEN_GOOGLE }}
           
 
       - name: Run Python Scripts
