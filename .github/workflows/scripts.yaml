@@ -40,9 +40,9 @@ jobs:
       - name: Set up OpenAI API key
     
         run: |
-          export OPENAI_API_KEY
-          export REFRES_TOKEN_GOOGLE
-          export NETJSON=$(python utilities/setter_service.py)
+          export ${{ secrets.OPENAI_API_KEY }}
+          echo  ${{ secrets.OPENAI_API_KEY }} 
+          
 
       - name: Run Python Scripts
         run: |
