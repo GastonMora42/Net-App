@@ -29,6 +29,7 @@ def merge_csvs(input_csv, output_csv):
     df_combined.to_csv(output_csv, index=False)
 
 if __name__ == "__main__":
+
     # Obtener la ruta del directorio de trabajo de GitHub Actions
     github_workspace = os.getenv('GITHUB_WORKSPACE', default='.')
 
