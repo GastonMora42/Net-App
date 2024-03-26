@@ -1,3 +1,4 @@
+import os
 from docx import Document
 import csv
 import pandas as pd
@@ -28,10 +29,13 @@ def merge_csvs(input_csv, output_csv):
     df_combined.to_csv(output_csv, index=False)
 
 if __name__ == "__main__":
-    # Rutas de los archivos
-    input_docx_file = '/Users/gastonmora/Desktop/Net-App/dataset/ultimo_documento.docx'
-    output_csv_file = '/Users/gastonmora/Desktop/Net-App/dataset/output.csv'
-    temporary_csv_file = '/Users/gastonmora/Desktop/Net-App/dataset/temporary.csv'
+    # Obtener la ruta del directorio de trabajo de GitHub Actions
+    github_workspace = os.getenv('GITHUB_WORKSPACE', default='.')
+
+    # Rutas de los archivos ajustadas para GitHub Workspace
+    input_docx_file = os.path.join(github_workspace, 'dataset', 'ultimo_documento.docx')
+    temporary_csv_file = os.path.join(github_workspace, 'dataset', 'temporary.csv')
+    output_csv_file = os.path.join(github_workspace, 'dataset', 'output.csv')
 
     # Convertir documento de Word a CSV
     convert_docx_to_csv(input_docx_file, temporary_csv_file)
