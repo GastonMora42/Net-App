@@ -39,11 +39,12 @@ jobs:
 
       - name: Set up OpenAI API key
         env:
-          MYCREDSGOOGLE: ${{ secrets.MYCREDSGOOGLE }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          REFRES_TOKEN_GOOGLE: ${{ secrets.REFRES_TOKEN_GOOGLE }}
           NETJSON: ${{ secrets.NETJSON }}
         run: |
           export OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }}
-          export MYCREDSGOOGLE=$(python utilities/setter.py)
+          export REFRES_TOKEN_GOOGLE=${{ secrets.REFRES_TOKEN_GOOGLE }}
           export NETJSON=$(python utilities/setter_service.py)
 
       - name: Run Python Scripts

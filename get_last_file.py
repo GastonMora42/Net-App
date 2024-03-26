@@ -10,10 +10,10 @@ def configure_google_drive():
     gauth = GoogleAuth()
 
     # Obtener el token de acceso desde la variable de entorno
-    access_token_json = os.getenv('MYCREDSGOOGLE')
+    access_token_json = os.getenv('REFRES_TOKEN_GOOGLE')
 
     if access_token_json is None:
-        raise ValueError("No se encontró el token de acceso en la variable de entorno MYCREDSGOOGLE")
+        raise ValueError("No se encontró el token de acceso en la variable de entorno REFRES_TOKEN_GOOGLE")
 
     # Cargar el token de acceso desde la cadena JSON
     try:
