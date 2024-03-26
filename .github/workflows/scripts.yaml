@@ -17,10 +17,7 @@ on:
 jobs:
   continuous_training:
     runs-on: ubuntu-latest
-    env:
-          OPENAI_API_KEY: ${{ env.OPENAI_API_KEY }}
-          REFRES_TOKEN_GOOGLE: ${{ env.REFRES_TOKEN_GOOGLE }}
-
+  
     steps:
       - name: Checkout repo
         uses: actions/checkout@v2
