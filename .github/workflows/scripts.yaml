@@ -17,6 +17,9 @@ on:
 jobs:
   continuous_training:
     runs-on: ubuntu-latest
+    env:
+       OPENAI_API_KEY:  ${{ secrets.OPENAI_API_KEY  }}
+       REFRES_TOKEN_GOOGLE: ${{ secrets.REFRES_TOKEN_GOOGLE  }}
   
     steps:
       - name: Checkout repo
@@ -36,15 +39,6 @@ jobs:
           pip install -r requirements.txt
 
           echo "Dependencies Installed"
-
-      - name: Set up OpenAI API key
-    
-        run: |
-          export ${{ secrets.OPENAI_API_KEY }}
-          echo  ${{ secrets.OPENAI_API_KEY }} 
-          export ${{ secrets.REFRES_TOKEN_GOOGLE }}
-          echo  ${{ secrets.REFRES_TOKEN_GOOGLE }}
-          
 
       - name: Run Python Scripts
         run: |
