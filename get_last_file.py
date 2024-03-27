@@ -9,10 +9,10 @@ def configure_google_drive():
     gauth = GoogleAuth()
 
     # Obtener el token de acceso desde la variable de entorno
-    access_token = os.getenv('REFRESH_TOKEN_GOOGLE')
+    access_token = os.getenv('REFRES_TOKEN_GOOGLE')
 
     if access_token is None:
-        raise ValueError("No se encontró el token de acceso en la variable de entorno REFRESH_TOKEN_GOOGLE")
+        raise ValueError("No se encontró el token de acceso en la variable de entorno REFRES_TOKEN_GOOGLE")
 
     # Configurar las credenciales con el token de acceso
     scopes = ['https://www.googleapis.com/auth/drive']
