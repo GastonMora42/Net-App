@@ -12,3 +12,4 @@ tiktoken
 dvc
 python-docx
 chromadb
+os
