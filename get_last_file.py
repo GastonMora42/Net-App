@@ -2,7 +2,6 @@ import os
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 from oauth2client.service_account import ServiceAccountCredentials
-import json
 
 #Fixing
 
@@ -10,24 +9,19 @@ def configure_google_drive():
     gauth = GoogleAuth()
 
     # Obtener el token de acceso desde la variable de entorno
-    access_token_json = os.getenv('REFRES_TOKEN_GOOGLE')
+    access_token = os.getenv('REFRESH_TOKEN_GOOGLE')
 
-    if access_token_json is None:
-        raise ValueError("No se encontró el token de acceso en la variable de entorno REFRES_TOKEN_GOOGLE")
-
-    # Cargar el token de acceso desde la cadena JSON
-    try:
-        creds_dict = json.loads(access_token_json)
-    except json.JSONDecodeError as e:
-        raise ValueError("El token de acceso no está en formato JSON válido") from e
+    if access_token is None:
+        raise ValueError("No se encontró el token de acceso en la variable de entorno REFRESH_TOKEN_GOOGLE")
 
     # Configurar las credenciales con el token de acceso
     scopes = ['https://www.googleapis.com/auth/drive']
-    creds = ServiceAccountCredentials.from_service_account_info(creds_dict, scopes=scopes)
+    creds = ServiceAccountCredentials.from_access_token(access_token, scopes=scopes)
     gauth.credentials = creds
 
     drive = GoogleDrive(gauth)
     return drive
+
 
 def download_latest_google_doc(drive, folder_id, local_file_name):
     file_list = drive.ListFile({'q': f"'{folder_id}' in parents and trashed=false"}).GetList()
