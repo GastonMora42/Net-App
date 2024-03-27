@@ -7,17 +7,16 @@ from oauth2client.service_account import ServiceAccountCredentials
 
 def configure_google_drive():
     gauth = GoogleAuth()
-
+    
     # Obtener el token de acceso desde la variable de entorno
     access_token = os.getenv('REFRES_TOKEN_GOOGLE')
-
+    
     if access_token is None:
-        raise ValueError("No se encontró el token de acceso en la variable de entorno REFRES_TOKEN_GOOGLE")
+        raise ValueError("No se encontró el token de acceso en la variable de entorno GOOGLE_DRIVE_ACCESS_TOKEN")
 
     # Configurar las credenciales con el token de acceso
-    scopes = ['https://www.googleapis.com/auth/drive']
-    creds = ServiceAccountCredentials.from_access_token(access_token, scopes=scopes)
-    gauth.credentials = creds
+    gauth.CommandLineAuth()  # Autenticación mediante línea de comandos
+    gauth.credentials.refresh_token = access_token
 
     drive = GoogleDrive(gauth)
     return drive
