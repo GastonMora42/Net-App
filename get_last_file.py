@@ -1,26 +1,26 @@
-import os
+import subprocess
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
-from oauth2client.service_account import ServiceAccountCredentials
-
-#Fixing
+import os
 
 def configure_google_drive():
     gauth = GoogleAuth()
-    
-    # Obtener el token de acceso desde la variable de entorno
-    access_token = os.getenv('REFRES_TOKEN_GOOGLE')
-    
-    if access_token is None:
-        raise ValueError("No se encontró el token de acceso en la variable de entorno GOOGLE_DRIVE_ACCESS_TOKEN")
-
-    # Configurar las credenciales con el token de acceso
-    gauth.CommandLineAuth()  # Autenticación mediante línea de comandos
-    gauth.credentials.refresh_token = access_token
-
+    refresh_token = os.getenv('REFRES_TOKEN_GOOGLE')
+    # Cargar o crear las credenciales en un archivo
+    gauth.LoadCredentialsFile(refresh_token)
+    if gauth.credentials is None:
+        # Autenticar por primera vez
+        gauth.LocalWebserverAuth()
+    elif gauth.access_token_expired:
+        # Refrescar el token si está expirado
+        gauth.Refresh()
+    else:
+        # Autorización válida
+        gauth.Authorize()
+    # Guardar las credenciales actualizadas
+    gauth.SaveCredentialsFile("mycreds.txt")
     drive = GoogleDrive(gauth)
     return drive
-
 
 def download_latest_google_doc(drive, folder_id, local_file_name):
     file_list = drive.ListFile({'q': f"'{folder_id}' in parents and trashed=false"}).GetList()
@@ -39,16 +39,13 @@ def download_latest_google_doc(drive, folder_id, local_file_name):
 
     print(f"El último documento se ha descargado exitosamente como {local_file_name}")
 
+
 def main():
     folder_id = '1T54m4fmnMr-GSznRhdT7YU3mhaCOWerB'
-    local_file_name = '/Users/gastonmora/Desktop/Net-App/dataset/ultimo_documento.docx'
+    local_file_name = '/dataset/ultimo_documento.docx'
 
-    try:
-        drive = configure_google_drive()
-        download_latest_google_doc(drive, folder_id, local_file_name)
-    except Exception as e:
-        print(f"Error al configurar Google Drive: {e}")
+    drive = configure_google_drive()
+    download_latest_google_doc(drive, folder_id, local_file_name)
 
 if __name__ == "__main__":
     main()
-
