@@ -5,7 +5,7 @@ from datetime import datetime
 import os 
 
 def configure_google_cloud_storage():
-    gcloud_auth = os.getenv('NETJSON')
+    gcloud_auth = os.getenv('NET_JSON')
     with open('temp.json', 'w') as f:
         f.write(gcloud_auth)
 
@@ -17,17 +17,13 @@ def configure_google_cloud_storage():
 
 def track_and_push():
      # Rastrear el archivo local output.csv con DVC
-    subprocess.run(['dvc', 'add', '/Users/gastonmora/Desktop/Net-App/dataset/output.csv'])
+    subprocess.run(['dvc', 'add', 'dataset/output.csv'])
 
     # Agregar un nuevo remoto para el rastreo en Google Cloud Storage
     subprocess.run(['dvc', 'remote', 'add', '-f', 'gs_remote', 'gs://model-dataset-netsquared-tracker/dataset'])
 
     # Subir el archivo rastreado a Google Cloud Storage
     subprocess.run(['dvc', 'push', '-r', 'gs_remote'])
-  
-    subprocess.run(['git', 'add', '.'])
-
-    subprocess.run(['git', 'commit', '-m', 'Agrega y rastrea carpeta en DVC'])
 
     subprocess.run(['dvc', 'push'])
 

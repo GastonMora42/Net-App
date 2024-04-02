@@ -20,6 +20,7 @@ jobs:
     env:
        OPENAI_API_KEY:  ${{ secrets.OPENAI_API_KEY  }}
        MYCREDSGOOGLE:  ${{ secrets.MYCREDSGOOGLE  }}
+       NETJSON: ${{ secrets.NETJSON}}
        
   
     steps:
@@ -40,6 +41,10 @@ jobs:
           pip install -r requirements.txt
 
           echo "Dependencies Installed"
+
+      - name: Install dependencies
+        run: |
+          export NET_JSON=$(python utilities/setter_service.py)
 
       - name: Run Python Scripts
         run: |
