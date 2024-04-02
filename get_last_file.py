@@ -2,23 +2,21 @@ import subprocess
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 import os
+import json
 
 def configure_google_drive():
     gauth = GoogleAuth()
-    refresh_token = os.getenv('MYCREDSGOOGLE')
-    # Cargar o crear las credenciales en un archivo
-    gauth.LoadCredentialsFile(refresh_token)
-    if gauth.credentials is None:
-        # Autenticar por primera vez
-        gauth.LocalWebserverAuth()
-    elif gauth.access_token_expired:
-        # Refrescar el token si está expirado
-        gauth.Refresh()
-    else:
-        # Autorización válida
-        gauth.Authorize()
-    # Guardar las credenciales actualizadas
-    gauth.SaveCredentialsFile("mycreds.txt")
+
+    # Obtener el JSON completo de las credenciales desde la variable de entorno
+    credentials_json = os.getenv('GOOGLE_CREDENTIALS_JSON')
+
+    if credentials_json is None:
+        raise ValueError("No se encontró el JSON de credenciales en las variables de entorno")
+
+    # Cargar las credenciales desde el JSON
+    credentials = json.loads(credentials_json)
+    gauth.credentials = credentials
+
     drive = GoogleDrive(gauth)
     return drive
 
