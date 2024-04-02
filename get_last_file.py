@@ -3,6 +3,7 @@ import json
 from pydrive.auth import GoogleAuth
 from pydrive.drive import GoogleDrive
 from oauth2client.client import OAuth2Credentials
+from datetime import datetime
 
 def configure_google_drive():
     gauth = GoogleAuth()
@@ -31,13 +32,17 @@ def configure_google_drive():
     gauth.credentials = credentials
 
     # Verificar si el token de acceso está expirado y refrescarlo si es necesario
-    if gauth.access_token_expired:
+    if is_token_expired(credentials_dict['token_expiry']):
         gauth.Refresh()
 
     # Crear el objeto GoogleDrive con las credenciales configuradas
     drive = GoogleDrive(gauth)
     return drive
 
+def is_token_expired(token_expiry_str):
+    token_expiry_datetime = datetime.strptime(token_expiry_str, "%Y-%m-%dT%H:%M:%SZ")
+    now = datetime.utcnow()
+    return now >= token_expiry_datetime
 
 def download_latest_google_doc(drive, folder_id, local_file_name):
     file_list = drive.ListFile({'q': f"'{folder_id}' in parents and trashed=false"}).GetList()
@@ -55,7 +60,6 @@ def download_latest_google_doc(drive, folder_id, local_file_name):
     latest_google_doc.GetContentFile(local_file_name, mimetype='application/vnd.openxmlformats-officedocument.wordprocessingml.document')
 
     print(f"El último documento se ha descargado exitosamente como {local_file_name}")
-
 
 def main():
     folder_id = '1T54m4fmnMr-GSznRhdT7YU3mhaCOWerB'
