@@ -6,20 +6,27 @@ import json
 
 def configure_google_drive():
     gauth = GoogleAuth()
-    # Cargar o crear las credenciales en un archivo
-    # Obtener el refresh token desde la variable de entorno
-    refresh_token = os.getenv('MYCREDSGOOGLE')
-    gauth.LoadCredentialsFile(refresh_token)
-    if gauth.credentials is None:
-        print("El token no se encontro en la variable de entorno")
-    elif gauth.access_token_expired:
-        # Refrescar el token si está expirado
+    
+    # Obtener el JSON de las credenciales desde la variable de entorno
+    credentials_json = os.getenv('MYCREDSGOOGLE')
+    
+    if credentials_json is None:
+        raise ValueError("No se encontró el JSON de credenciales en la variable de entorno")
+
+    # Cargar las credenciales desde el JSON
+    credentials = json.loads(credentials_json)
+    
+    # Configurar las credenciales en gauth
+    gauth.credentials = credentials
+
+    # Verificar si el token de acceso está expirado y refrescarlo si es necesario
+    if gauth.access_token_expired:
         gauth.Refresh()
-    else:
-        # Autorización válida
-        gauth.Authorize()
+    
     # Guardar las credenciales actualizadas
     gauth.SaveCredentialsFile("mycreds.txt")
+    
+    # Crear el objeto GoogleDrive con las credenciales configuradas
     drive = GoogleDrive(gauth)
     return drive
 
