@@ -8,7 +8,7 @@ jobs:
       REGION: ${{ secrets.REGION }}
       PROJECT_ID: ${{ secrets.PROJECT_ID }}
       SERVICE_NAME: ${{ secrets.SERVICE_NAME }}
-      NETJSON: ${{ secrets.NETJSON}}
+      SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY}}
     steps:
       - name: Checkout Repo
         uses: actions/checkout@v2
@@ -18,11 +18,11 @@ jobs:
           virtualenv venv
           source venv/bin/activate
           pip install dvc[gs]
-          export NET_JSON=$(python utilities setter_service.py)
+          export SERVICE_ACCOUNT_KEY=$(python utilities setter_service.py)
       - name: Set up GCLOUD SDK
-        uses: google-github-actions/setup-gcloud@main
+        uses: google-github-actions/setup-gcloud@v2
         with:
-          netjson:  ${{ secrets.NETJSON }}
+          service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY}}
           project_id: ${{ secrets.PROJECT_ID }}
       - name: Build Container Image and Push
         run: |
