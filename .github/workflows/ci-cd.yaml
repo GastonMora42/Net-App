@@ -10,7 +10,7 @@ jobs:
       SERVICE_NAME: ${{ secrets.SERVICE_NAME }}
       NETJSON: ${{ secrets.NETJSON}}
     steps:
-      - name: CHeckout Repo
+      - name: Checkout Repo
         uses: actions/checkout@v2
       - name: Set enviroment and bring the model
         run: |
@@ -27,7 +27,7 @@ jobs:
       - name: Build Container Image and Push
         run: |
           docker build . -t $REGISTRY_NAME:$GITHUB_SHA
-          gcloud auth  configure-docker -q
+          gcloud auth configure-docker -q
           sudo -u $USER docker push $REGISTRY_NAME:$GITHUB_SHA
       - name: Deploy to Cloud Run
         run: |
