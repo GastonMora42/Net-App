@@ -20,7 +20,7 @@ jobs:
           pip install dvc[gs]
           export NET_JSON=$(python utilities setter_service.py)
       - name: Set up GCLOUD SDK
-        uses: google-github-actions/setup-gcloud@master
+        uses: google-github-actions/setup-gcloud@main
         with:
           netjson:  ${{ secrets.NETJSON }}
           project_id: ${{ secrets.PROJECT_ID }}
