@@ -40,6 +40,10 @@ jobs:
 
           echo "Dependencies Installed"
 
+      - name: Seteamos Google Token
+        run: |
+          export MYCREDSGOOGLE=$(python utilities/setter.py)
+
       - name: Run Python Scripts
         run: |
           source venv/bin/activate  # Activar entorno virtual

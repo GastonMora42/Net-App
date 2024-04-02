@@ -5,7 +5,7 @@ import os
 
 def configure_google_drive():
     gauth = GoogleAuth()
-    refresh_token = os.getenv('REFRES_TOKEN_GOOGLE')
+    refresh_token = os.getenv('MYCREDSGOOGLE')
     # Cargar o crear las credenciales en un archivo
     gauth.LoadCredentialsFile(refresh_token)
     if gauth.credentials is None:
