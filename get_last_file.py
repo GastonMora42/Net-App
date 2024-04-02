@@ -1,37 +1,38 @@
-import subprocess
-from pydrive.auth import GoogleAuth
-from pydrive.drive import GoogleDrive
 import os
 import json
+from pydrive.auth import GoogleAuth
+from pydrive.drive import GoogleDrive
+from oauth2client.client import OAuth2Credentials
 
 def configure_google_drive():
     gauth = GoogleAuth()
 
-    # Obtener las credenciales desde variables de entorno
-    client_id = os.getenv('CLIENT_ID')
-    client_secret = os.getenv('CLIENT_SECRET')
-    refresh_token = os.getenv('REFRESH_TOKEN')
+    # Obtener las credenciales desde las variables de entorno
+    credentials_json = os.getenv('MYCREDSGOOGLE')
+    credentials_dict = json.loads(credentials_json)
 
-    # Configurar las credenciales en gauth
-    gauth.credentials = {
-        "client_id": client_id,
-        "client_secret": client_secret,
-        "refresh_token": refresh_token,
-        "token_expiry": None,
-        "token_uri": "https://oauth2.googleapis.com/token",
-        "user_agent": None,
-        "revoke_uri": "https://oauth2.googleapis.com/revoke",
-        "scopes": ["https://www.googleapis.com/auth/drive"],
-        "_class": "OAuth2Credentials",
-        "_module": "oauth2client.client"
-    }
+    # Crear un objeto OAuth2Credentials desde el JSON
+    credentials = OAuth2Credentials(
+        credentials_dict['access_token'],
+        credentials_dict['client_id'],
+        credentials_dict['client_secret'],
+        credentials_dict['refresh_token'],
+        credentials_dict['token_expiry'],
+        credentials_dict['token_uri'],
+        credentials_dict['user_agent'],
+        credentials_dict['revoke_uri'],
+        credentials_dict['id_token'],
+        credentials_dict['id_token_jwt'],
+        credentials_dict['token_response'],
+        credentials_dict['scopes']
+    )
+
+    # Asignar las credenciales al objeto gauth
+    gauth.credentials = credentials
 
     # Verificar si el token de acceso está expirado y refrescarlo si es necesario
     if gauth.access_token_expired:
         gauth.Refresh()
-
-    # Guardar las credenciales actualizadas (opcional)
-    # gauth.SaveCredentialsFile("mycreds.txt")
 
     # Crear el objeto GoogleDrive con las credenciales configuradas
     drive = GoogleDrive(gauth)
