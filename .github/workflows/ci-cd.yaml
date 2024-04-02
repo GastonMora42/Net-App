@@ -1,0 +1,34 @@
+name: Continuos Integration/Deployment
+on: [push]
+jobs:
+  ci_cd:
+    runs-on: ubuntu-latest
+    env:
+      REGISTRY_NAME: ${{ secrets.REGISTRY_NAME }}
+      REGION: ${{ secrets.REGION }}
+      PROJECT_ID: ${{ secrets.PROJECT_ID }}
+      SERVICE_NAME: ${{ secrets.SERVICE_NAME }}
+      NETJSON: ${{ secrets.NETJSON}}
+    steps:
+      - name: CHeckout Repo
+        uses: actions/checkout@v2
+      - name: Set enviroment and bring the model
+        run: |
+          pip3 install virtualenv
+          virtualenv venv
+          source venv/bin/activate
+          pip install dvc[gs]
+          export NET_JSON=$(python utilities setter_service.py)
+      - name: Set up GCLOUD SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          netjson:  ${{ secrets.NETJSON }}
+          project_id: ${{ secrets.PROJECT_ID }}
+      - name: Build Container Image and Push
+        run: |
+          docker build . -t $REGISTRY_NAME:$GITHUB_SHA
+          gcloud auth  configure-docker -q
+          sudo -u $USER docker push $REGISTRY_NAME:$GITHUB_SHA
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run services update $SERVICE_NAME --region=$REGION --image=$REGISTRY_NAME:$GITHUB_SHA

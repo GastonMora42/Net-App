@@ -1,10 +1,6 @@
 name: Run Scripts
 
 on:
-  push:
-    branches:
-      - main
-      - actions
   schedule:
     - cron: '0 */4 * * *'
   workflow_dispatch:
