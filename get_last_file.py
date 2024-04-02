@@ -9,6 +9,7 @@ def configure_google_drive():
     gauth = GoogleAuth()
 
     # Obtener las credenciales desde las variables de entorno
+    #Update
     credentials_json = os.getenv('MYCREDSGOOGLE')
     credentials_dict = json.loads(credentials_json)
 
