@@ -65,7 +65,7 @@ embeddingopenai = OpenAIEmbeddings(
 
 logger.info("Cargando data resumida...")
 
-loader = CSVLoader(file_path='/Users/gastonmora/Desktop/Net-App/dataset/resumen-contacts.csv')
+loader = CSVLoader(file_path='dataset/resumen-contacts.csv')
 data = loader.load()
 
 NOMBRE_INDICE_CHROMA = "datos-vectorial"
