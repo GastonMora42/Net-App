@@ -18,8 +18,16 @@ def convert_docx_to_csv(docx_file, csv_file):
             csv_writer.writerow([line])
 
 def merge_csvs(input_csv, output_csv):
-    # Leer los archivos CSV
-    df1 = pd.read_csv(output_csv)
+    # Verificar la existencia de los archivos
+    if not os.path.exists(input_csv):
+        print(f"El archivo {input_csv} no existe.")
+        return
+
+    # Si el archivo de salida ya existe, leerlo para concatenar los datos
+    df1 = pd.DataFrame()
+    if os.path.exists(output_csv):
+        df1 = pd.read_csv(output_csv)
+
     df2 = pd.read_csv(input_csv)
 
     # Concatenar los DataFrames
@@ -29,7 +37,6 @@ def merge_csvs(input_csv, output_csv):
     df_combined.to_csv(output_csv, index=False)
 
 if __name__ == "__main__":
-
     # Obtener la ruta del directorio de trabajo de GitHub Actions
     github_workspace = os.getenv('GITHUB_WORKSPACE', default='.')
 
