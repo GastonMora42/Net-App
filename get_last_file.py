@@ -63,7 +63,7 @@ def download_latest_google_doc(drive, folder_id, local_file_name):
 
 def main():
     folder_id = '1T54m4fmnMr-GSznRhdT7YU3mhaCOWerB'
-    local_file_name = '/dataset/ultimo_documento.docx'
+    local_file_name = 'dataset/ultimo_documento.docx'
 
     drive = configure_google_drive()
     download_latest_google_doc(drive, folder_id, local_file_name)
