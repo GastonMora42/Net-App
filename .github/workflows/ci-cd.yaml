@@ -41,9 +41,7 @@ jobs:
           project_id: ${{ secrets.PROJECT_ID }}
 
       - name: Configure Docker for Google Artifact Registry
-        run: |
-          gcloud auth configure-docker us-central1-docker.pkg.dev
-          y
+        run: echo Y | gcloud auth configure-docker us-central1-docker.pkg.dev
       
       - name: Build Docker image
         run: |
