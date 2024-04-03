@@ -39,11 +39,15 @@ jobs:
           service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
           project_id: ${{ secrets.PROJECT_ID }}
       
-      - name: Build Docker Image and Push
-        run: |
-          docker build . -t $REGISTRY_NAME:$GITHUB_SHA
-          gcloud auth configure-docker -q
-          docker push $REGISTRY_NAME:$GITHUB_SHA
+      - name: Build Docker Image
+        run: docker build . -t $REGISTRY_NAME:$GITHUB_SHA
+
+      - name: Configure Docker Auth
+        run: gcloud auth configure-docker -q
+
+      - name: Push Docker Image
+        run: docker push $REGISTRY_NAME:$GITHUB_SHA
+
       
       - name: Deploy to Cloud Run
         run: |
