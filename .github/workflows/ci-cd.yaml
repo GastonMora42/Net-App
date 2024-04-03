@@ -33,12 +33,12 @@ jobs:
           virtualenv venv
           source venv/bin/activate
           pip install dvc[gs]
-          export GOOGLE_APPLICATION_CREDENTIALS=$SERVICE_ACCOUNT_KEY
+          echo "$SERVICE_ACCOUNT_KEY" > /tmp/key.json
+          export GOOGLE_APPLICATION_CREDENTIALS="/tmp/key.json"
       
       - name: Set up GCLOUD SDK
-        uses: google-github-actions/setup-gcloud@v2
+        uses: google-github-actions/auth-gcloud@v2
         with:
-          service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
           project_id: ${{ secrets.PROJECT_ID }}
       
       - name: Build Docker Image
@@ -48,9 +48,8 @@ jobs:
         run: gcloud auth configure-docker -q
 
       - name: Push Docker Image
-        run: docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$REGISTRY_NAME:$GITHUB_SHA
+        run: sudo -u $USER docker push $REGION-docker/$PROJECT_ID/$REPO_NAME/$REGISTRY_NAME:$GITHUB_SHA
 
-      
       - name: Deploy to Cloud Run
         run: |
           gcloud run services update $SERVICE_NAME --region=$REGION --image=$REGISTRY_NAME:$GITHUB_SHA
