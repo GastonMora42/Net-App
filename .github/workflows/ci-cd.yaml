@@ -34,12 +34,6 @@ jobs:
           source venv/bin/activate
           pip install dvc[gs]
           export GOOGLE_APPLICATION_CREDENTIALS=$SERVICE_ACCOUNT_KEY
-      
-      - name: Authenticate with Google Cloud
-        uses: google-github-actions/setup@v0
-        with:
-          service_account_key: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-          project_id: ${{ secrets.PROJECT_ID }}
 
       - name: Set up GCLOUD SDK
         uses: google-github-actions/setup-gcloud@v2
