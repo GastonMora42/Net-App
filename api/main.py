@@ -24,7 +24,7 @@ embeddingopenai = OpenAIEmbeddings(
     openai_api_key=os.environ.get("OPENAI_API_KEY")
 )
 
-NOMBRE_INDICE_CHROMA = "data-vectorial"
+NOMBRE_INDICE_CHROMA = "datos-vectorial"
 vectorstore_chroma = Chroma(persist_directory=NOMBRE_INDICE_CHROMA, embedding_function=embeddingopenai)
 
 retriever_chroma = vectorstore_chroma.as_retriever(search_kwargs={"k": 4})

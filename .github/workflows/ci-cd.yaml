@@ -56,7 +56,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image to Docker Hub
-        run: docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$REGISTRY_NAME:$GITHUB_SHA
+        run: docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$REGISTRY_NAME:$GITHUB_SHA .
 
       - name: Deploy to Cloud Run
         run: |
