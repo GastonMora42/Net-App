@@ -37,7 +37,7 @@ jobs:
           export GOOGLE_APPLICATION_CREDENTIALS="/tmp/key.json"
       
       - name: Set up GCLOUD SDK
-        uses: google-github-actions/auth-gcloud@v2
+        uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: ${{ secrets.PROJECT_ID }}
       
