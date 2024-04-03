@@ -56,7 +56,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image to Docker Hub
-        run: docker push gcr.io/${{ secrets.PROJECT_ID }}/${{ secrets.REPO_NAME }}/${REGISTRY_NAME}:${GITHUB_SHA}
+        run: sudo -u $USER docker push $REGION-docker/$PROJECT_ID/$REPO_NAME/$REGISTRY_NAME:$GITHUB_SHA
 
       - name: Deploy to Cloud Run
         run: |
