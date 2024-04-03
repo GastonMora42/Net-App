@@ -46,7 +46,7 @@ jobs:
       
       - name: Build Docker image
         run: |
-          docker build -t $REGION-docker/$PROJECT_ID/$REPO_NAME/$REGISTRY_NAME:$GITHUB_SHA .
+          docker build -t $REGION-docker/$PROJECT_ID/$REPO_NAME/$REGISTRY_NAME:$GITHUB_SHA
           docker images  # Agregar este comando para listar imágenes
 
       - name: Login to Docker Hub
@@ -56,9 +56,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image to Docker Hub
-        run: sudo -u $USER docker push $REGION-docker/$PROJECT_ID/$REPO_NAME/$REGISTRY_NAME:$GITHUB_SHA
+        run: docker push $REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$REGISTRY_NAME:$GITHUB_SHA
 
       - name: Deploy to Cloud Run
         run: |
-          gcloud run services update $SERVICE_NAME --region=$REGION --image=$REGION-docker/$PROJECT_ID/$REPO_NAME/$REGISTRY_NAME:$GITHUB_SHA
+          gcloud run services update $SERVICE_NAME --region=$REGION --image=$REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$REGISTRY_NAME:$GITHUB_SHA
 
