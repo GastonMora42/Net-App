@@ -46,7 +46,7 @@ jobs:
       
       - name: Build Docker image
         run: |
-          docker build -t $REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$REGISTRY_NAME:$GITHUB_SHA
+          docker build -t $REGION-docker.pkg.dev/$PROJECT_ID/$REPO_NAME/$REGISTRY_NAME:$GITHUB_SHA .
           docker images  # Agregar este comando para listar imágenes
 
       - name: Login to Docker Hub
