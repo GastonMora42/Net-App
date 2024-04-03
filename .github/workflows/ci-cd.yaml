@@ -51,6 +51,10 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
+      - name: Configure Docker for Google Artifact Registry
+        run: |
+          gcloud auth configure-docker
+
       - name: Push Docker image to Docker Hub
         run: sudo -u $USER docker push $REGION-docker/$PROJECT_ID/$REPO_NAME/$REGISTRY_NAME:$GITHUB_SHA
 
