@@ -13,6 +13,7 @@ jobs:
       SERVICE_NAME: ${{ secrets.SERVICE_NAME }}
       SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
       REPO_NAME: ${{ secrets.REPO_NAME }}
+      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
     
     steps:
       - name: Checkout Repo
@@ -55,7 +56,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Otorgamos permisos a Docker para acceder a GCL
-        run: sudo usermod -a -G docker ${{ secrets.DOCKER_USERNAME }}
+        run: sudo usermod -a -G docker $DOCKER_USERNAME
 
       - name: Tag Docker Image
         run: |
