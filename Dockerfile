@@ -16,6 +16,6 @@ COPY initializer.sh .
 
 RUN chmod +x initializer.sh
 
-EXPOSE 8000
+EXPOSE 8080
 
 ENTRYPOINT  ["./initializer.sh"]
