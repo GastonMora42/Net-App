@@ -42,9 +42,9 @@ jobs:
         with:
           project_id: ${{ secrets.PROJECT_ID }}
 
-      - name: Run gcloud auth login
+      - name: Sign in to gcloud CLI
         run: |
-          gcloud auth login
+          echo "4/0AeaYSHBpMDOdFTPLt7C-Dy-ijF1v-IsqjW0ZYNfd1r4owNhPCi1WKwRxMzrNhljSqFangw" | gcloud auth login --no-launch-browser
       
       - name: Build Docker image
         run: |
