@@ -14,6 +14,7 @@ jobs:
       SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
       REPO_NAME: ${{ secrets.REPO_NAME }}
       DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
     
     steps:
       - name: Checkout Repo
@@ -43,7 +44,7 @@ jobs:
       
       - name: Build Docker image
         run: |
-          docker build -t netapi .
+          docker build -t gcr.io/netsquared-407819/net-deploy-2.0 .   
           docker images  # Agregar este comando para listar imágenes
 
       - name: Configure Docker for Google Artifact Registry
@@ -55,14 +56,10 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Tag Docker Image
-        run: |
-          docker tag netapi us-central1-docker.pkg.dev/netsquared-407819/net-deploy/netapiv1
-
       - name: Push Docker image to - Google Artifact Registry
-        run: docker push us-central1-docker.pkg.dev/netsquared-407819/net-deploy/netapiv1
+        run: docker push gcr.io/netsquared-407819/net-deploy-2.0     
 
       - name: Deploy to Cloud Run
         run: |
-          gcloud run services update $SERVICE_NAME --region=$REGION --image=us-central1-docker.pkg.dev/netsquared-407819/net-deploy/netapiv1
+          gcloud run deploy deploy-net-2.0 -e OPENAI_API_KEY=$OPENAI_API_KEY --image gcr.io/netsquared-407819/net-deploy-2.0 --platform managed
 
