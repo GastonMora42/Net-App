@@ -41,7 +41,10 @@ jobs:
         uses: google-github-actions/setup-gcloud@v2
         with:
           project_id: ${{ secrets.PROJECT_ID }}
-          
+
+      - name: Config Gaston gmail
+        run: gcloud config set account gastonmora1742@gmail.com 
+
       - name: Build Docker image
         run: |
           docker build -t gcr.io/netsquared-407819/net-deploy-2.0 .   
