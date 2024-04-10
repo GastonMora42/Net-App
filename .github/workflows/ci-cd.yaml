@@ -57,7 +57,7 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image to - Google Artifact Registry
-        run: docker push gcr.io/netsquared-407819/net-deploy-2.0     
+        run: gcloud docker -- push gcr.io/netsquared-407819/net-deploy-2.0     
 
       - name: Deploy to Cloud Run
         run: |
