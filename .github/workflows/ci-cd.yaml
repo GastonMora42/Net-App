@@ -43,8 +43,7 @@ jobs:
           project_id: ${{ secrets.PROJECT_ID }}
 
       - name: Sign in to gcloud CLI
-        run: |
-          echo "4/0AeaYSHBpMDOdFTPLt7C-Dy-ijF1v-IsqjW0ZYNfd1r4owNhPCi1WKwRxMzrNhljSqFangw" | gcloud auth login --no-launch-browser
+        run: echo "4/0AeaYSHBpMDOdFTPLt7C-Dy-ijF1v-IsqjW0ZYNfd1r4owNhPCi1WKwRxMzrNhljSqFangw" | gcloud auth login --no-launch-browser
       
       - name: Build Docker image
         run: |
