@@ -59,7 +59,7 @@ jobs:
         run: |
           docker tag netapi us-central1-docker.pkg.dev/netsquared-407819/net-deploy/netapiv1
 
-      - name: Push Docker image to Google Artifact Registry
+      - name: Push Docker image to - Google Artifact Registry
         run: docker push us-central1-docker.pkg.dev/netsquared-407819/net-deploy/netapiv1
 
       - name: Deploy to Cloud Run

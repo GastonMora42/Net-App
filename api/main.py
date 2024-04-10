@@ -18,6 +18,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Load the embeddings and vector store
 # Definir el modelo y el retriever como variables globales
 embeddingopenai = OpenAIEmbeddings(
     model="text-embedding-3-large",
