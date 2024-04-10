@@ -22,6 +22,8 @@ def merge_csvs(input_csv, output_csv):
     if not os.path.exists(input_csv):
         print(f"El archivo {input_csv} no existe.")
         return
+    
+    #Try Fix
 
     # Si el archivo de salida ya existe, leerlo para concatenar los datos
     df1 = pd.DataFrame()
