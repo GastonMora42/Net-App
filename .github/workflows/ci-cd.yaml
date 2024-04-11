@@ -42,15 +42,9 @@ jobs:
         with:
           project_id: ${{ secrets.PROJECT_ID }}
 
-      - name: Config Gaston gmail
-        run: gcloud config set account gastonmora1742@gmail.com 
-
-      - name: Config Gaston gmail
-        run: gcloud auth activate-service-account gastonmora1742@gmail.com --key-file=$SERVICE_ACCOUNT_KEY
-
       - name: Build Docker image
         run: |
-          docker build -t gcr.io/netsquared-407819/net-deploy-2.0 .   
+          docker build -t gcr.io/netsquared-407819/net-deploy-2.0:GITHUB_SHA .   
           docker images  # Agregar este comando para listar imágenes
 
       - name: Configure Docker for Google Artifact Registry
@@ -63,9 +57,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image to - Google Artifact Registry
-        run: gcloud docker -- push gcr.io/netsquared-407819/net-deploy-2.0     
+        run: docker push gcr.io/netsquared-407819/net-deploy-2.0:GITHUB_SHA     
 
       - name: Deploy to Cloud Run
         run: |
-          gcloud run deploy deploy-net-2.0 -e OPENAI_API_KEY=$OPENAI_API_KEY --image gcr.io/netsquared-407819/net-deploy-2.0 --platform managed
+          gcloud run deploy deploy-net-2.0 -e OPENAI_API_KEY=$OPENAI_API_KEY --image gcr.io/netsquared-407819/net-deploy-2.0:GITHUB_SHA --platform managed
 
