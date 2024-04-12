@@ -12,16 +12,13 @@ def configure_google_drive():
     credentials_json = os.getenv('MYCREDSGOOGLE')
     credentials_dict = json.loads(credentials_json)
 
-    # Convertir el campo token_expiry a un objeto datetime
-    token_expiry_datetime = datetime.strptime(credentials_dict['token_expiry'], "%Y-%m-%dT%H:%M:%SZ")
-
     # Crear un objeto OAuth2Credentials desde el JSON
     credentials = OAuth2Credentials(
         credentials_dict['access_token'],
         credentials_dict['client_id'],
         credentials_dict['client_secret'],
         credentials_dict['refresh_token'],
-        token_expiry_datetime,  # Usar el objeto datetime en lugar de la cadena de texto
+        credentials_dict['token_expiry'],  # Aquí se pasa token_expiry_str directamente
         credentials_dict['token_uri'],
         credentials_dict['user_agent'],
         credentials_dict['revoke_uri'],
@@ -35,18 +32,18 @@ def configure_google_drive():
     gauth.credentials = credentials
 
     # Verificar si el token de acceso está expirado y refrescarlo si es necesario
-    if is_token_expired(token_expiry_datetime):
+    if is_token_expired(credentials_dict['token_expiry']):
         gauth.Refresh()
 
     # Crear el objeto GoogleDrive con las credenciales configuradas
     drive = GoogleDrive(gauth)
     return drive
 
-
 def is_token_expired(token_expiry_str):
     token_expiry_datetime = datetime.strptime(token_expiry_str, "%Y-%m-%dT%H:%M:%SZ")
     now = datetime.utcnow()
     return now >= token_expiry_datetime
+
 
 def download_latest_google_doc(drive, folder_id, local_file_name):
     file_list = drive.ListFile({'q': f"'{folder_id}' in parents and trashed=false"}).GetList()
