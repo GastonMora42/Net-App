@@ -28,6 +28,8 @@ def configure_google_drive():
         credentials_dict['scopes']
     )
 
+    #Cambiamos los secrets json de github
+
     # Asignar las credenciales al objeto gauth
     gauth.credentials = credentials
 
