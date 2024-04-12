@@ -42,6 +42,7 @@ def configure_google_drive():
     return drive
 
 def is_token_expired(token_expiry_str):
+    # Convertir la cadena de texto a datetime
     token_expiry_datetime = datetime.strptime(token_expiry_str, "%Y-%m-%dT%H:%M:%SZ")
     now = datetime.utcnow()
     return now >= token_expiry_datetime
