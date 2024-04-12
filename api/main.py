@@ -28,23 +28,34 @@ embedding_openai = OpenAIEmbeddings(
     model="text-embedding-3-large",
     openai_api_key=os.environ.get("OPENAI_API_KEY")
 )
-NOMBRE_INDICE_CHROMA = "dataset-contactos"
-vectorstore_chroma = Chroma(persist_directory=NOMBRE_INDICE_CHROMA, embedding_function=embedding_openai)
-retriever_chroma = vectorstore_chroma.as_retriever()
-llm = ChatOpenAI(
-    model_name="gpt-3.5-turbo",
-    openai_api_key=os.environ.get("OPENAI_API_KEY"),
-    temperature=1,
-)
-qa_chains_with_sources = RetrievalQAWithSourcesChain.from_chain_type(
-    llm=llm,
-    chain_type="stuff",
-    retriever=retriever_chroma,
-)
 
 @app.post("/generate_text")
-async def generate_text(input_data: InputData):
+async def generate_text(
+    input_data: InputData,
+    use_database: bool = Query(default=False, description="Indica si se debe utilizar la base de datos")
+):
     try:
+        # Inicializar la base de datos si se solicita
+        if use_database:
+            NOMBRE_INDICE_CHROMA = "dataset-contactos"
+            vectorstore_chroma = Chroma(persist_directory=NOMBRE_INDICE_CHROMA, embedding_function=embedding_openai)
+            retriever_chroma = vectorstore_chroma.as_retriever()
+        else:
+            retriever_chroma = None
+
+        # Inicializar el modelo
+        llm = ChatOpenAI(
+            model_name="gpt-3.5-turbo",
+            openai_api_key=os.environ.get("OPENAI_API_KEY"),
+            temperature=1,
+        )
+
+        qa_chains_with_sources = RetrievalQAWithSourcesChain.from_chain_type(
+            llm=llm,
+            chain_type="stuff",
+            retriever=retriever_chroma,
+        )
+
         # Concatenar el input de texto con el string predeterminado
         concatenated_text = input_data.text + ""
 
