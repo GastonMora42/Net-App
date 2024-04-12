@@ -24,6 +24,7 @@ def merge_csvs(input_csv, output_csv):
         return
     
     #Try Fix
+    #Probamos ci-cd
 
     # Si el archivo de salida ya existe, leerlo para concatenar los datos
     df1 = pd.DataFrame()
