@@ -18,7 +18,7 @@ def configure_google_drive():
         credentials_dict['client_id'],
         credentials_dict['client_secret'],
         credentials_dict['refresh_token'],
-        credentials_dict['token_expiry'],  # Aquí se pasa token_expiry_str directamente
+        credentials_dict['token_expiry'],
         credentials_dict['token_uri'],
         credentials_dict['user_agent'],
         credentials_dict['revoke_uri'],
@@ -43,7 +43,6 @@ def is_token_expired(token_expiry_str):
     token_expiry_datetime = datetime.strptime(token_expiry_str, "%Y-%m-%dT%H:%M:%SZ")
     now = datetime.utcnow()
     return now >= token_expiry_datetime
-
 
 def download_latest_google_doc(drive, folder_id, local_file_name):
     file_list = drive.ListFile({'q': f"'{folder_id}' in parents and trashed=false"}).GetList()
