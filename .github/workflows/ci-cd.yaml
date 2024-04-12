@@ -44,7 +44,7 @@ jobs:
 
       - name: Build Docker image
         run: |
-          docker build -t gcr.io/netsquared-407819/net-deploy-2.0:GITHUB_SHA .   
+          docker build -t gcr.io/netsquared-407819/net-deploy-2.0 .   
           docker images  # Agregar este comando para listar imágenes
 
       - name: Configure Docker for Google Artifact Registry
@@ -57,9 +57,9 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image to - Google Artifact Registry
-        run: docker push gcr.io/netsquared-407819/net-deploy-2.0:GITHUB_SHA     
+        run: docker push gcr.io/netsquared-407819/net-deploy-2.0    
 
       - name: Deploy to Cloud Run
         run: |
-          gcloud run deploy deploy-net-2.0 -e OPENAI_API_KEY=$OPENAI_API_KEY --image gcr.io/netsquared-407819/net-deploy-2.0:GITHUB_SHA --platform managed
+          gcloud run deploy deploy-net-2.0 -e OPENAI_API_KEY=$OPENAI_API_KEY --image gcr.io/netsquared-407819/net-deploy-2.0 --platform managed
 

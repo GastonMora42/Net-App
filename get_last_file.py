@@ -65,7 +65,7 @@ def download_latest_google_doc(drive, folder_id, local_file_name):
     print(f"El último documento se ha descargado exitosamente como {local_file_name}")
 
 def main():
-    folder_id = '1T54m4fmnMr-GSznRhdT7YU3mhaCOWerB'
+    folder_id = '15ID0ejJRXM7t9GJSKu6Oqjsjc2twimNF'
     local_file_name = 'dataset/ultimo_documento.docx'
 
     drive = configure_google_drive()

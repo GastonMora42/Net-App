@@ -8,8 +8,6 @@ COPY [".", "/app"]
 
 ENV PIP_TIMEOUT=2000
 
-ENV OPENAI_API_KEY=""
-
 RUN pip install -U pip && pip install -r requirements.txt
 
 RUN pip install --no-cache-dir gunicorn
