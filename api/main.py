@@ -45,9 +45,9 @@ async def generate_text(
 
         # Inicializar el modelo
         llm = ChatOpenAI(
-            model_name="gpt-3.5-turbo",
+            model_name="gpt-4-turbo",
             openai_api_key=os.environ.get("OPENAI_API_KEY"),
-            temperature=1,
+            temperature=0.1,
         )
 
         qa_chains_with_sources = RetrievalQAWithSourcesChain.from_chain_type(
@@ -80,9 +80,15 @@ async def send_feedback(feedback: Feedback):
         if feedback.good:
             print("La respuesta es buena.")
             # Aquí puedes realizar alguna acción con la retroalimentación positiva
+            prompt_feedback = "Buena respuesta"
         else:
             print("La respuesta no es buena.")
             # Aquí puedes realizar alguna acción con la retroalimentación negativa
+            prompt_feedback = "Mala respuesta"
+
+        # Enviar el feedback al modelo
+        # Suponiendo que tienes una función para enviar el feedback al modelo
+        # send_feedback_to_model(prompt_feedback)
 
         return {"message": "Feedback recibido correctamente."}
     except Exception as e:
