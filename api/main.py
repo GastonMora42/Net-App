@@ -24,10 +24,10 @@ embeddingopenai = OpenAIEmbeddings(
     openai_api_key=os.environ.get("OPENAI_API_KEY")
 )
 
-NOMBRE_INDICE_CHROMA = "data-vectorial"
+NOMBRE_INDICE_CHROMA = "dataset-contactos"
 vectorstore_chroma = Chroma(persist_directory=NOMBRE_INDICE_CHROMA, embedding_function=embeddingopenai)
 
-retriever_chroma = vectorstore_chroma.as_retriever(search_kwargs={"k": 4})
+retriever_chroma = vectorstore_chroma.as_retriever(search_kwargs={"k": 1})
 
 llm = ChatOpenAI (
     model_name="gpt-3.5-turbo",
@@ -48,7 +48,7 @@ class InputData(BaseModel):
 async def generate_text(input_data: InputData):
     try:
         # Realizar consultas al modelo con un rango aleatorio
-        num_queries = random.randint(25, 40)
+        num_queries = random.randint(1, 5)
         responses = [qa_chains_whith_sources(input_data.text) for _ in range(num_queries)]
         # Seleccionar aleatoriamente una respuesta de las generadas
         random_response = random.choice(responses)
