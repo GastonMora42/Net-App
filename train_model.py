@@ -65,10 +65,10 @@ embeddingopenai = OpenAIEmbeddings(
 
 logger.info("Cargando data resumida...")
 
-loader = CSVLoader(file_path='dataset/resumen-contacts.csv')
+loader = CSVLoader(file_path='/dataset/Contacts-Main View.csv')
 data = loader.load()
 
-NOMBRE_INDICE_CHROMA = "datos-vectorial"
+NOMBRE_INDICE_CHROMA = "dataset-contactos"
 
 vectorstore_chroma = Chroma.from_documents(
     documents=data,
@@ -86,8 +86,6 @@ vectorstore_chroma = Chroma(
 retriever_chroma = vectorstore_chroma.as_retriever(
     search_kwargs={"k" : 4}
 )
-
-retriever_chroma.get_relevant_documents("quien es matias y que quiere")
 
 llm = ChatOpenAI (
     model_name="gpt-3.5-turbo",
