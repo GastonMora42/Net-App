@@ -21,6 +21,8 @@ from prepare import contacts_data
 from langchain.embeddings import OpenAIEmbeddings
 import os
 
+#Probamos con otro dataset
+
 logging.basicConfig(
     format="%(asctime)s %(levelname)s:%(name)s: %(message)s",
     level=logging.INFO,
