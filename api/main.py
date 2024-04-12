@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, Form
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from langchain.embeddings import OpenAIEmbeddings
@@ -20,6 +20,9 @@ app.add_middleware(
 class InputData(BaseModel):
     text: str
 
+class Feedback(BaseModel):
+    good: bool
+
 # Inicialización global de objetos
 embedding_openai = OpenAIEmbeddings(
     model="text-embedding-3-large",
@@ -40,26 +43,36 @@ qa_chains_with_sources = RetrievalQAWithSourcesChain.from_chain_type(
 )
 
 @app.post("/generate_text")
-async def generate_text(input_data: InputData, use_chroma: bool = False, feedback: bool = False):
+async def generate_text(input_data: InputData):
     try:
-        # Si se ha seleccionado la opción para utilizar Chroma
-        if use_chroma:
-            qa_chains_with_sources.retriever = retriever_chroma
-
         # Concatenar el input de texto con el string predeterminado
         concatenated_text = input_data.text + ""
 
         # Realizar una sola consulta al modelo utilizando el texto concatenado
         response = qa_chains_with_sources(concatenated_text)
 
-        # Guardar la retroalimentación del usuario si se proporcionó
-        if feedback is not None:
-            # Aquí puedes realizar alguna acción con la retroalimentación, como guardarla en una base de datos o utilizarla para entrenar tu modelo
-            if feedback:  # Si la retroalimentación es positiva
-                print("La respuesta es buena.")
-            else:  # Si la retroalimentación es negativa
-                print("La respuesta no es buena.")
-
-        return {"generated_text": response}
+        # Devolver la respuesta junto con los botones de feedback
+        return {
+            "generated_text": response,
+            "feedback_options": {
+                "good": "Buena",
+                "bad": "Mala"
+            }
+        }
     except Exception as e:
         return {"error": f"Error en la generación del texto: {e}"}
+
+@app.post("/send_feedback")
+async def send_feedback(feedback: Feedback):
+    try:
+        # Guardar la retroalimentación del usuario en alguna base de datos o utilizarla para entrenar tu modelo
+        if feedback.good:
+            print("La respuesta es buena.")
+            # Aquí puedes realizar alguna acción con la retroalimentación positiva
+        else:
+            print("La respuesta no es buena.")
+            # Aquí puedes realizar alguna acción con la retroalimentación negativa
+
+        return {"message": "Feedback recibido correctamente."}
+    except Exception as e:
+        return {"error": f"Error al procesar el feedback: {e}"}
