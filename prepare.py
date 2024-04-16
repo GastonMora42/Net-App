@@ -65,6 +65,10 @@ df = pd.DataFrame([answer], columns=["Resumen"])
 # Guardar el DataFrame como un archivo CSV
 df.to_csv('dataset/resumen-contacts.csv')
 
+# Configurar nombre de usuario y correo electrónico
+subprocess.run(["git", "config", "user.email", "gaston-mora@hotmail.com"])
+subprocess.run(["git", "config", "user.name", "GastonMora42"])
+
 # Agregar el archivo generado al área de preparación
 subprocess.run(["git", "add", "dataset/resumen-contacts.csv"])
 
