@@ -10,6 +10,7 @@ import io
 import os
 import openai
 import pandas as pd
+import subprocess
 
 
 logging.basicConfig(
@@ -49,12 +50,12 @@ llm_gpt3_5 = OpenAI(
     model_name="gpt-4-turbo",
     n=1,
     temperature=0,
-    max_tokens=100,
+    max_tokens=250,
     )
 
 llm = OpenAI()
 
-question = "Porfavor Generame un documento detallado y resumido del contenido de" + csv_content
+question = "Porfavor Generame un resumen detallado conservando a modo de variables las siguientes variables de datos (Nombre:,Apellido:,Empresa:,Pais:,Email:,Interacciones:,Especialidad:,Twitter:,Teléfono:,Ultima fecha de contacto:,Deck(pdf):,Sitio Web:,LinkedIn:,Comentarios relevantes:,Resumen por GPT de la reunion:) del contenido de" + csv_content
 
 answer = llm(question)
 
@@ -63,5 +64,14 @@ df = pd.DataFrame([answer], columns=["Resumen"])
 
 # Guardar el DataFrame como un archivo CSV
 df.to_csv('dataset/resumen-contacts.csv')
+
+# Agregar el archivo generado al área de preparación
+subprocess.run(["git", "add", "dataset/resumen-contacts.csv"])
+
+# Hacer un commit con un mensaje descriptivo
+subprocess.run(["git", "commit", "-m", "Add resumen generado a raiz de los scripts"])
+
+# Pushear los cambios al repositorio remoto si es necesario
+subprocess.run(["git", "push"])
 
 logger.info("Data preparada.....")
