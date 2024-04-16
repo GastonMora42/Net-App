@@ -1,6 +1,12 @@
 name: Run Scripts
 
 on:
+  push:
+    branches:
+      - main
+      - actions
+      - workflow-ci-cd
+      - memory
   schedule:
     - cron: '0 */4 * * *'
   workflow_dispatch:
@@ -48,8 +54,7 @@ jobs:
           source venv/bin/activate  # Activar entorno virtual
           python get_last_file.py  # Ejecutar script1 desde src
           python convert.py  # Ejecutar script2 desde src
-          
-          python prepare.py  # Ejecutar script4 desde src
-          python train_model.py  # Ejecutar script5 desde src
+          python prepare.py  # Ejecutar script3 desde src
+          python train_model.py  # Ejecutar script4 desde src
 
           echo "Scripts Completed"
