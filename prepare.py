@@ -65,6 +65,19 @@ df = pd.DataFrame([answer], columns=["Resumen"])
 # Guardar el DataFrame como un archivo CSV
 df.to_csv('dataset/resumen-contacts.csv')
 
+# Obtener la clave SSH desde el secreto de GitHub
+ssh_private_key = os.environ.get("PUSH_DB")
+
+# Guardar la clave SSH en un archivo temporal
+with open('/tmp/id_rsa', 'w') as f:
+    f.write(ssh_private_key)
+
+# Dar permisos adecuados al archivo
+subprocess.run(['chmod', '600', '/tmp/id_rsa'])
+
+# Copiar la clave SSH al directorio .ssh
+subprocess.run(['cp', '/tmp/id_rsa', '~/.ssh/id_rsa'])
+
 # Configurar nombre de usuario y correo electrónico
 subprocess.run(["git", "config", "user.email", "gaston-mora@hotmail.com"])
 subprocess.run(["git", "config", "user.name", "GastonMora42"])
