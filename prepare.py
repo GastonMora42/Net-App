@@ -19,6 +19,8 @@ logging.basicConfig(
     stream=sys.stderr
 )
 
+#Modificamos estructura en la DB
+
 logger = logging.getLogger(__name__)
 
 logging.info("Fetching data.....")
@@ -44,7 +46,7 @@ api_key = os.environ.get("OPENAI_API_KEY")
 openai_api_key = os.environ.get("OPENAI_API_KEY")
 
 llm_gpt3_5 = OpenAI(
-    model_name="gpt-3.5-turbo",
+    model_name="gpt-4-turbo",
     n=1,
     temperature=0,
     max_tokens=100,

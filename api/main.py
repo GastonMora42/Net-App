@@ -1,21 +1,12 @@
-from fastapi import FastAPI, Query, Form
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from langchain.chains import ConversationalRetrievalChain
+from langchain.chat_models import ChatOpenAI
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
-from langchain.chat_models import ChatOpenAI
-from langchain.chains import RetrievalQAWithSourcesChain
 import os
 
 app = FastAPI(docs_url="/")
-
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 class InputData(BaseModel):
     text: str
@@ -29,54 +20,39 @@ embedding_openai = OpenAIEmbeddings(
     openai_api_key=os.environ.get("OPENAI_API_KEY")
 )
 
+# Inicializar la base de datos Chroma
+NOMBRE_INDICE_CHROMA = "dataset-contactos"
+vectorstore_chroma = Chroma(persist_directory=NOMBRE_INDICE_CHROMA, embedding_function=embedding_openai)
+
+# Inicializar el modelo de ChatOpenAI
+llm = ChatOpenAI(
+    model_name="gpt-4-turbo",
+    temperature=0.2,
+    max_tokens=1000,
+)
+
+# Inicializar la conversación
+conversation = ConversationalRetrievalChain.from_llm(
+    llm=llm, retriever=vectorstore_chroma.as_retriever(), verbose=True
+)
+
+# Historial de la conversación
+conversation_history = []
+
 @app.post("/generate_text")
-async def generate_text(
-    input_data: InputData,
-    use_database: bool = Query(default=False, description="Indica si se debe utilizar la base de datos")
-):
+async def generate_text(input_data: InputData):
     try:
-        # Inicializar la base de datos si se solicita
-        if use_database:
-            NOMBRE_INDICE_CHROMA = "dataset-contactos"
-            vectorstore_chroma = Chroma(persist_directory=NOMBRE_INDICE_CHROMA, embedding_function=embedding_openai)
-            retriever_chroma = vectorstore_chroma.as_retriever()
-        else:
-            retriever_chroma = None
-
-        # Inicializar el modelo
-        llm = ChatOpenAI(
-            model_name="gpt-4-turbo",
-            openai_api_key=os.environ.get("OPENAI_API_KEY"),
-            temperature=0.1,
-        )
-
-        qa_chains_with_sources = RetrievalQAWithSourcesChain.from_chain_type(
-            llm=llm,
-            chain_type="stuff",
-            retriever=retriever_chroma,
-        )
-
-        # Concatenar el input de texto con el string predeterminado
-        concatenated_text = input_data.text + ""
-
-        # Realizar una sola consulta al modelo utilizando el texto concatenado
-        response = qa_chains_with_sources(concatenated_text)
-
-        # Devolver la respuesta junto con los botones de feedback
-        return {
-            "generated_text": response,
-            "feedback_options": {
-                "good": "Buena",
-                "bad": "Mala"
-            }
-        }
+        query = input_data.text
+        response = process_query(query)
+        # Actualizar el historial de la conversación
+        conversation_history.append((query, response))
+        return {"generated_text": response}
     except Exception as e:
-        return {"error": f"Error en la generación del texto: {e}"}
+        raise HTTPException(status_code=500, detail=f"Error en la generación del texto: {e}")
 
 @app.post("/send_feedback")
 async def send_feedback(feedback: Feedback):
     try:
-        # Guardar la retroalimentación del usuario en alguna base de datos o utilizarla para entrenar tu modelo
         if feedback.good:
             print("La respuesta es buena.")
             # Aquí puedes realizar alguna acción con la retroalimentación positiva
@@ -85,11 +61,12 @@ async def send_feedback(feedback: Feedback):
             print("La respuesta no es buena.")
             # Aquí puedes realizar alguna acción con la retroalimentación negativa
             prompt_feedback = "Mala respuesta"
-
-        # Enviar el feedback al modelo
-        # Suponiendo que tienes una función para enviar el feedback al modelo
-        # send_feedback_to_model(prompt_feedback)
-
         return {"message": "Feedback recibido correctamente."}
     except Exception as e:
-        return {"error": f"Error al procesar el feedback: {e}"}
+        raise HTTPException(status_code=500, detail=f"Error al procesar el feedback: {e}")
+
+def process_query(query):
+    global conversation_history
+    print("[La IA está pensando...]")
+    result = conversation({"question": query, "chat_history": conversation_history})
+    return result["answer"]
