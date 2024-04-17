@@ -11,6 +11,7 @@ import os
 import openai
 import pandas as pd
 import subprocess
+from git import Repo
 
 
 logging.basicConfig(
@@ -92,13 +93,23 @@ subprocess.run(['cp', '/tmp/id_rsa', f'{ssh_dir}/id_rsa'])
 subprocess.run(["git", "config", "user.email", "gaston-mora@hotmail.com"])
 subprocess.run(["git", "config", "user.name", "GastonMora42"])
 
-# Agregar el archivo generado al área de preparación
-subprocess.run(["git", "add", "dataset/resumen-contacts.csv"])
-
-# Hacer un commit con un mensaje descriptivo
-subprocess.run(["git", "commit", "-m", "Add resumen generado a raiz de los scripts"])
-
-# Pushear los cambios al repositorio remoto si es necesario
-subprocess.run(["git", "push"])
-
 logger.info("Data preparada.....")
+
+def git_push(repo_dir):
+    # Cambiar al directorio del repositorio
+    os.chdir(repo_dir)
+
+    # Añadir todos los archivos al área de preparación
+    subprocess.run(['git', 'add', 'dataset/resumen-contacts.csv'])
+
+    # Hacer commit de los cambios
+    subprocess.run(['git', 'commit', '-m', 'Add resumen generado a raiz de los scripts'])
+
+    # Hacer push al repositorio remoto (origin) en la rama actual
+    subprocess.run(['git', 'push', 'origin', 'memory'])
+
+if __name__ == '__main__':
+    # Ruta al directorio del repositorio
+    repo_dir = 'https://github.com/GastonMora42/Net-App/tree/memory'
+
+    git_push(repo_dir)
