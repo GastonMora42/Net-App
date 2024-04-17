@@ -89,15 +89,13 @@ subprocess.run(['chmod', '600', '/tmp/id_rsa'])
 # Copiar la clave SSH al directorio .ssh
 subprocess.run(['cp', '/tmp/id_rsa', f'{ssh_dir}/id_rsa'])
 
-# Configurar nombre de usuario y correo electrónico
-subprocess.run(["git", "config", "user.email", "gaston-mora@hotmail.com"])
-subprocess.run(["git", "config", "user.name", "GastonMora42"])
-
 logger.info("Data preparada.....")
 
-def git_push(repo_dir):
-    # Cambiar al directorio del repositorio
-    os.chdir(repo_dir)
+def git_push():
+
+    # Configurar nombre de usuario y correo electrónico
+    subprocess.run(["git", "config", "user.email", "gaston-mora@hotmail.com"])
+    subprocess.run(["git", "config", "user.name", "GastonMora42"])
 
     # Añadir todos los archivos al área de preparación
     subprocess.run(['git', 'add', 'dataset/resumen-contacts.csv'])
@@ -110,6 +108,4 @@ def git_push(repo_dir):
 
 if __name__ == '__main__':
     # Ruta al directorio del repositorio
-    repo_dir = 'https://github.com/GastonMora42/Net-App.git'
-
-    git_push(repo_dir)
+    git_push()
