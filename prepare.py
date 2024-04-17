@@ -110,6 +110,6 @@ def git_push(repo_dir):
 
 if __name__ == '__main__':
     # Ruta al directorio del repositorio
-    repo_dir = 'https://github.com/GastonMora42/Net-App/tree/memory'
+    repo_dir = 'https://github.com/GastonMora42/Net-App.git'
 
     git_push(repo_dir)
