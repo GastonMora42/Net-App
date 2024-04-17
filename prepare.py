@@ -90,22 +90,3 @@ subprocess.run(['chmod', '600', '/tmp/id_rsa'])
 subprocess.run(['cp', '/tmp/id_rsa', f'{ssh_dir}/id_rsa'])
 
 logger.info("Data preparada.....")
-
-def git_push():
-
-    # Configurar nombre de usuario y correo electrónico
-    subprocess.run(["git", "config", "user.email", "gaston-mora@hotmail.com"])
-    subprocess.run(["git", "config", "user.name", "GastonMora42"])
-
-    # Añadir todos los archivos al área de preparación
-    subprocess.run(['git', 'add', 'dataset/resumen-contacts.csv'])
-
-    # Hacer commit de los cambios
-    subprocess.run(['git', 'commit', '-m', 'Add resumen generado a raiz de los scripts'])
-
-    # Hacer push al repositorio remoto (origin) en la rama actual
-    subprocess.run(['git', 'push', 'origin', 'memory'])
-
-if __name__ == '__main__':
-    # Ruta al directorio del repositorio
-    git_push()
