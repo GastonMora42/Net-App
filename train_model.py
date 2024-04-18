@@ -54,7 +54,7 @@ model = Pipeline([
     )),
     ('llm', ChatOpenAI(
         openai_api_key="OPENAI_API_KEY",
-        model_name="gpt-3.5-turbo",
+        model_name="gpt-4-turbo",
         temperature=0.5
     )),
 ])
@@ -65,7 +65,7 @@ embeddingopenai = OpenAIEmbeddings(
 
 logger.info("Cargando data resumida...")
 
-loader = CSVLoader(file_path='/dataset/Contacts-Main View.csv')
+loader = CSVLoader(file_path='dataset/Contacts-Main View.csv')
 data = loader.load()
 
 NOMBRE_INDICE_CHROMA = "dataset-contactos"
@@ -84,11 +84,11 @@ vectorstore_chroma = Chroma(
 )
 
 retriever_chroma = vectorstore_chroma.as_retriever(
-    search_kwargs={"k" : 4}
+    search_kwargs={"k" : 2}
 )
 
 llm = ChatOpenAI (
-    model_name="gpt-3.5-turbo",
+    model_name="gpt-4-turbo",
     openai_api_key="OPENAI_API_KEY",
     temperature=1,
 )
