@@ -2,8 +2,9 @@ name: Push Refresh-DB to GitHub
 
 on:
   schedule:
-    - cron: '*/10 * * * *'  # Ejecutar cada 10 min
-
+    - cron: '*/10 * * * *'  # Ejecutar cada 10 minutos
+  workflow_dispatch:  # Disparador manual
+  
 jobs:
   build:
     runs-on: ubuntu-latest
