@@ -26,3 +26,8 @@ jobs:
           git commit -m "Add resumen generado a raiz de los scripts"
           git push origin memory
 
+  additional_job:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Additional Step
+        run: echo "This is an additional step"
