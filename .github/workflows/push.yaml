@@ -1,0 +1,38 @@
+name: Push Refresh-DB to GitHub
+
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
+        options:
+        - info
+        - warning
+        - debug
+      tags:
+        description: 'Test scenario tags'
+        required: false
+        type: boolean
+      environment:
+        description: 'Environment to run tests against'
+        type: environment
+        required: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Push changes
+      run: |
+        git config --global user.name 'GastonMora42'
+        git config --global user.email 'gaston-mora@hotmail.com'
+        git add dataset/resumen-contacts.csv
+        git commit -m "Add resumen generado a raiz de los scripts"
+        git push origin memory
