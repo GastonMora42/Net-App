@@ -1,10 +1,13 @@
 name: Push Refresh-DB to GitHub
 
 on:
-  workflow_dispatch:  # Disparador manual
-  push:
-    branches:
-      - memory 
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'
+        required: true
+        default: 'warning'
+        type: choice
 
 jobs:
   build:
