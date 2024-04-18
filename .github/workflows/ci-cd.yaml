@@ -42,14 +42,6 @@ jobs:
         with:
           project_id: ${{ secrets.PROJECT_ID }}
 
-      - name: "Autenticar en GCP"
-        id: auth
-        uses: google-github-actions/auth@ef5d53e30bbcd8d0836f4288f5e50ff3e086997d #v1.0.0
-        with:
-          token_format: access_token
-          workload_identity_provider: ${{ env.PROJECT_ID }}
-          service_account: ${{ secrets.GCP_SA_KEY }}
-
       - name: Build Docker image
         run: |
           docker build -t gcr.io/netsquared-407819/net-deploy-4-0 .   
