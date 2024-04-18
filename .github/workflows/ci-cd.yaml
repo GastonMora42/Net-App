@@ -42,9 +42,17 @@ jobs:
         with:
           project_id: ${{ secrets.PROJECT_ID }}
 
+      - name: "Autenticar en GCP"
+        id: auth
+        uses: google-github-actions/auth@ef5d53e30bbcd8d0836f4288f5e50ff3e086997d #v1.0.0
+        with:
+          token_format: access_token
+          workload_identity_provider: ${{ env.PROJECT_ID }}
+          service_account: ${{ secrets.GCP_SA_KEY }}
+
       - name: Build Docker image
         run: |
-          docker build -t gcr.io/netsquared-407819/net-deploy-2.0 .   
+          docker build -t gcr.io/netsquared-407819/net-deploy-4-0 .   
           docker images  # Agregar este comando para listar imágenes
 
       - name: Configure Docker for Google Artifact Registry
@@ -57,9 +65,16 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image to - Google Artifact Registry
-        run: docker push gcr.io/netsquared-407819/net-deploy-2.0    
+        run: docker push gcr.io/netsquared-407819/net-deploy-4-0    
+
+      - name: "Desplegar en Cloud Run"
+        uses: google-github-actions/deploy-cloudrun@9c01af28be5da14b228ba369b7700d22830b35b7 #v1.0.1
+        with:
+          image: us-central1-us-central1-docker.pkg.dev/netsquared-407819/cloud-run-source-deploy/${{ secrets.PROJECT_ID }}/gcr.io/netsquared-407819/net-deploy-4-0:latest
+          region: us-central1
+          service: deploy-net-3-0
 
       - name: Deploy to Cloud Run
         run: |
-          gcloud run deploy deploy-net-2.0 -e OPENAI_API_KEY=$OPENAI_API_KEY --image gcr.io/netsquared-407819/net-deploy-2.0 --platform managed
+          gcloud run deploy deploy-net-4-0 --image gcr.io/netsquared-407819/net-deploy-4-0 --platform managed
 
