@@ -59,3 +59,14 @@ jobs:
           python train_model.py  # Ejecutar script4 desde src
 
           echo "Scripts Completed"
+
+      - name: Checkout repository
+        uses: actions/checkout@v2
+        
+      - name: Push changes
+        run: |
+          git config --global user.name 'GastonMora42'
+          git config --global user.email 'gaston-mora@hotmail.com'
+          git add dataset/resumen-contacts.csv
+          git commit -m "Add resumen generado a raiz de los scripts"
+          git push origin memory
