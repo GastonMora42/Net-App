@@ -64,7 +64,7 @@ jobs:
         run: |
           git status --porcelain | grep . && echo "::set-output name=changes::true" || echo "::set-output name=changes::false"
 
-      - name: Push changes
+      - name: Push change
         if: steps.check_changes.outputs.changes == 'true'
         run: |
           git config --global user.name 'GastonMora42'
