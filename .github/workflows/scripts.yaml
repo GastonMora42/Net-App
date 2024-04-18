@@ -35,7 +35,6 @@ jobs:
         with:
           python-version: '3.11'  # Define la versión de Python que necesitas
 
-
       - name: Install dependencies
         run: |
           pip3 install virtualenv
@@ -60,13 +59,16 @@ jobs:
 
           echo "Scripts Completed"
 
-      - name: Checkout repository
-        uses: actions/checkout@v2
-        
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git status --porcelain | grep . && echo "::set-output name=changes::true" || echo "::set-output name=changes::false"
+
       - name: Push changes
+        if: steps.check_changes.outputs.changes == 'true'
         run: |
           git config --global user.name 'GastonMora42'
           git config --global user.email 'gaston-mora@hotmail.com'
-          git add dataset/resumen-contacts.csv
+          git add -A
           git commit -m "Add resumen generado a raiz de los scripts"
           git push origin memory
