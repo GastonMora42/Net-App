@@ -5,6 +5,7 @@ on: [push]
 jobs:
   ci_cd:
     runs-on: ubuntu-latest
+    uses: docker/setup-buildx-action@v1
     
     env:
       REGISTRY_NAME: ${{ secrets.REGISTRY_NAME }}
@@ -59,16 +60,16 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
 
       - name: Push Docker image to Google Cloud
-        uses: google-github-actions/docker-push@v0
+        uses: google-github-actions/docker-push@v1
         with:
           project_id: ${{ secrets.PROJECT_ID }}
           image: gcr.io/${{ secrets.PROJECT_ID }}/${{ secrets.IMAGE_NAME }}
    
 
       - name: Deploy to Cloud Run
-        uses: google-github-actions/deploy-cloudrun@v0
+        uses: google-github-actions/deploy-cloudrun@v1
         with:
           image: gcr.io/${{ secrets.PROJECT_ID }}/${{ secrets.IMAGE_NAME }}
-          service: my-service
+          service: deploy-net-4-0
           project: ${{ secrets.PROJECT_ID }}
           credentials: ${{ secrets.GCP_SA_KEY_4_0 }}
