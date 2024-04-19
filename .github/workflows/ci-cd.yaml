@@ -1,6 +1,9 @@
 name: Continuous Integration/Deployment
 
-on: [push]
+on:
+  push:
+    branches:
+      - workflow-ci-cd  # Cambiar por la rama que desees
 
 jobs:
   ci_cd:
@@ -10,11 +13,9 @@ jobs:
       REGISTRY_NAME: ${{ secrets.REGISTRY_NAME }}
       REGION: ${{ secrets.REGION }}
       PROJECT_ID: ${{ secrets.PROJECT_ID }}
-      SERVICE_NAME: ${{ secrets.SERVICE_NAME }}
-      SERVICE_ACCOUNT_KEY: ${{ secrets.SERVICE_ACCOUNT_KEY }}
-      REPO_NAME: ${{ secrets.REPO_NAME }}
-      DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-      OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+      GCP_SA_KEY_4_0: ${{ secrets.GCP_SA_KEY_4_0 }}
+      IMAGE_NAME: "deploy-net-4-0"  # Cambiar por el nombre de la imagen Docker
+      SERVICE_NAME: "net-deployed-4-0"  # Cambiar por el nombre del servicio en Cloud Run
     
     steps:
       - name: Checkout Repo
@@ -25,48 +26,35 @@ jobs:
           echo "Registry Name: $REGISTRY_NAME"
           echo "Region: $REGION"
           echo "Project ID: $PROJECT_ID"
-          echo "Service Name: $SERVICE_NAME"
-          echo "Service Account Key: $SERVICE_ACCOUNT_KEY"
-          echo "Repo Name: $REPO_NAME"
-      
+          echo "Service Account Key: $GCP_SA_KEY_4_0"
+
       - name: Set up Python environment
         run: |
           pip3 install virtualenv
           virtualenv venv
           source venv/bin/activate
           pip install dvc[gs]
-          export GOOGLE_APPLICATION_CREDENTIALS=$SERVICE_ACCOUNT_KEY
+          echo $GCP_SA_KEY_4_0 > /tmp/key.json
+          export GOOGLE_APPLICATION_CREDENTIALS="/tmp/key.json"
 
       - name: Set up GCLOUD SDK
         uses: google-github-actions/setup-gcloud@v2
         with:
+          service_account_key: ${{ secrets.GCP_SA_KEY_4_0 }}
           project_id: ${{ secrets.PROJECT_ID }}
+          export_default_credentials: true
 
       - name: Build Docker image
-        uses: actions/docker/build@v1
-        with:
-          image: gcr.io/${{ secrets.PROJECT_ID }}/${{ secrets.IMAGE_NAME }}
-          file: ./Dockerfile
+        run: |
+          gcloud auth configure-docker ${REGISTRY_NAME} --quiet
+          docker build -t ${REGISTRY_NAME}/${IMAGE_NAME} .
+          docker push ${REGISTRY_NAME}/${IMAGE_NAME}
 
-      - name: Configure Docker for Google Artifact Registry
-        run:  gcloud auth configure-docker us-central1-docker.pkg.dev | echo "Y"
-
-      - name: Login to Docker Hub
-        uses: docker/login-action@v2
-        with:
-          username: ${{ secrets.DOCKER_USERNAME }}
-          password: ${{ secrets.DOCKER_PASSWORD }}
-
-      - name: Push Docker image to Google Cloud
-        uses: google-github-actions/docker-push@v1
-        with:
-          project_id: ${{ secrets.PROJECT_ID }}
-          image: gcr.io/${{ secrets.PROJECT_ID }}/${{ secrets.IMAGE_NAME }}
-   
       - name: Deploy to Cloud Run
         uses: google-github-actions/deploy-cloudrun@v1
         with:
-          image: gcr.io/${{ secrets.PROJECT_ID }}/${{ secrets.IMAGE_NAME }}
-          service: deploy-net-4-0
-          project: ${{ secrets.PROJECT_ID }}
+          service: ${{ env.SERVICE_NAME }}
+          image: ${REGISTRY_NAME}/${IMAGE_NAME}
+          region: ${REGION}
+          project_id: ${{ secrets.PROJECT_ID }}
           credentials: ${{ secrets.GCP_SA_KEY_4_0 }}
