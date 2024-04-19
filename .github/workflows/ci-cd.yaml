@@ -1,3 +1,5 @@
+uses: docker/setup-buildx-action@v1
+
 name: Continuous Integration/Deployment
 
 on: [push]
@@ -5,7 +7,6 @@ on: [push]
 jobs:
   ci_cd:
     runs-on: ubuntu-latest
-    uses: docker/setup-buildx-action@v1
     
     env:
       REGISTRY_NAME: ${{ secrets.REGISTRY_NAME }}
