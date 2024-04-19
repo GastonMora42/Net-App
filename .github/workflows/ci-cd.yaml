@@ -43,9 +43,11 @@ jobs:
           project_id: ${{ secrets.PROJECT_ID }}
 
       - name: Build Docker image
-        run: |
-          docker build -t gcr.io/netsquared-407819/net-deploy-4-0 .   
-          docker images  # Agregar este comando para listar imágenes
+        uses: actions/docker/build@v1
+        with:
+          image: gcr.io/${{ secrets.PROJECT_ID }}/${{ secrets.IMAGE_NAME }}
+          file: ./Dockerfile
+
 
       - name: Configure Docker for Google Artifact Registry
         run:  gcloud auth configure-docker us-central1-docker.pkg.dev | echo "Y"
@@ -56,17 +58,17 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Push Docker image to - Google Artifact Registry
-        run: docker push gcr.io/netsquared-407819/net-deploy-4-0    
-
-      - name: "Desplegar en Cloud Run"
-        uses: google-github-actions/deploy-cloudrun@9c01af28be5da14b228ba369b7700d22830b35b7 #v1.0.1
+      - name: Push Docker image to Google Cloud
+        uses: google-github-actions/docker-push@v0
         with:
-          image: us-central1-us-central1-docker.pkg.dev/netsquared-407819/cloud-run-source-deploy/${{ secrets.PROJECT_ID }}/gcr.io/netsquared-407819/net-deploy-4-0:latest
-          region: us-central1
-          service: deploy-net-3-0
+          project_id: ${{ secrets.PROJECT_ID }}
+          image: gcr.io/${{ secrets.PROJECT_ID }}/${{ secrets.IMAGE_NAME }}
+   
 
       - name: Deploy to Cloud Run
-        run: |
-          gcloud run deploy deploy-net-4-0 --image gcr.io/netsquared-407819/net-deploy-4-0 --platform managed
-
+        uses: google-github-actions/deploy-cloudrun@v0
+        with:
+          image: gcr.io/${{ secrets.PROJECT_ID }}/${{ secrets.IMAGE_NAME }}
+          service: my-service
+          project: ${{ secrets.PROJECT_ID }}
+          credentials: ${{ secrets.GCP_SA_KEY_4_0 }}
