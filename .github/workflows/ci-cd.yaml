@@ -15,7 +15,7 @@ jobs:
       PROJECT_ID: ${{ secrets.PROJECT_ID }}
       GCP_SA_KEY_4_0: ${{ secrets.GCP_SA_KEY_4_0 }}
       IMAGE_NAME: "deploy-net-4-0"  # Cambiar por el nombre de la imagen Docker
-      SERVICE_NAME: "net-deployed-4-0"  # Cambiar por el nombre del servicio en Cloud Run
+      SERVICE_NAME: "net-deployed-4-0"  # Cambiar por el nombre del servicio en Cloud R
     
     steps:
       - name: Checkout Repo
