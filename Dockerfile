@@ -6,11 +6,6 @@ COPY api/requirements.txt .
 
 COPY [".", "/app"]
 
-
-COPY --from=secret-volume /secret /projects/711857199805/secrets/OPENAI_API_KEY/versions/1
-# Configura el secreto como una variable de entorno
-RUN export OPENAI_API_KEY=$(echo $OPENAI_API_KEY)
-
 ENV PIP_TIMEOUT=2000
 
 RUN pip install -U pip && pip install -r requirements.txt
