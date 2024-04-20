@@ -56,7 +56,7 @@ jobs:
           python prepare.py  # Ejecutar script3 desde src
           python train_model.py  # Ejecutar script4 desde src
 
-          echo "Scripts Completed"
+          echo "Scripts Completedd"
 
       - name: Check for changes
         id: check_changes
