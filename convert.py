@@ -1,3 +1,4 @@
+import os
 from docx import Document
 import csv
 import pandas as pd
@@ -17,8 +18,19 @@ def convert_docx_to_csv(docx_file, csv_file):
             csv_writer.writerow([line])
 
 def merge_csvs(input_csv, output_csv):
-    # Leer los archivos CSV
-    df1 = pd.read_csv(output_csv)
+    # Verificar la existencia de los archivos
+    if not os.path.exists(input_csv):
+        print(f"El archivo {input_csv} no existe.")
+        return
+    
+    #Try Fix
+    #Probamos ci-cd
+
+    # Si el archivo de salida ya existe, leerlo para concatenar los datos
+    df1 = pd.DataFrame()
+    if os.path.exists(output_csv):
+        df1 = pd.read_csv(output_csv)
+
     df2 = pd.read_csv(input_csv)
 
     # Concatenar los DataFrames
@@ -28,10 +40,13 @@ def merge_csvs(input_csv, output_csv):
     df_combined.to_csv(output_csv, index=False)
 
 if __name__ == "__main__":
-    # Rutas de los archivos
-    input_docx_file = '/Users/gastonmora/Desktop/Net-App/src/dataset/ultimo_documento.docx'
-    output_csv_file = '/Users/gastonmora/Desktop/Net-App/src/dataset/output.csv'
-    temporary_csv_file = '/Users/gastonmora/Desktop/Net-App/src/dataset/temporary.csv'
+    # Obtener la ruta del directorio de trabajo de GitHub Actions
+    github_workspace = os.getenv('GITHUB_WORKSPACE', default='.')
+
+    # Rutas de los archivos ajustadas para GitHub Workspace
+    input_docx_file = os.path.join(github_workspace, 'dataset', 'ultimo_documento.docx')
+    temporary_csv_file = os.path.join(github_workspace, 'dataset', 'temporary.csv')
+    output_csv_file = os.path.join(github_workspace, 'dataset', 'output.csv')
 
     # Convertir documento de Word a CSV
     convert_docx_to_csv(input_docx_file, temporary_csv_file)

@@ -1,11 +1,10 @@
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
+from fastapi.middleware.cors import CORSMiddleware
+from langchain.chains import ConversationalRetrievalChain
+from langchain.chat_models import ChatOpenAI
 from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import Chroma
-from langchain.chat_models import ChatOpenAI
-from langchain.chains import RetrievalQAWithSourcesChain
-import random
 import os
 
 app = FastAPI(docs_url="/")
@@ -18,40 +17,65 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Definir el modelo y el retriever como variables globales
-embeddingopenai = OpenAIEmbeddings(
+class InputData(BaseModel):
+    text: str
+
+class Feedback(BaseModel):
+    good: bool
+
+# Inicialización global de objetos
+embedding_openai = OpenAIEmbeddings(
     model="text-embedding-3-large",
     openai_api_key=os.environ.get("OPENAI_API_KEY")
 )
 
-NOMBRE_INDICE_CHROMA = "data-vectorial"
-vectorstore_chroma = Chroma(persist_directory=NOMBRE_INDICE_CHROMA, embedding_function=embeddingopenai)
+# Inicializar la base de datos Chroma
+NOMBRE_INDICE_CHROMA = "dataset-contactos"
+vectorstore_chroma = Chroma(persist_directory=NOMBRE_INDICE_CHROMA, embedding_function=embedding_openai)
 
-retriever_chroma = vectorstore_chroma.as_retriever(search_kwargs={"k": 4})
-
-llm = ChatOpenAI (
-    model_name="gpt-3.5-turbo",
-    openai_api_key=os.environ.get("OPENAI_API_KEY"),
-    temperature=1,
+# Inicializar el modelo de ChatOpenAI
+llm = ChatOpenAI(
+    model_name="gpt-4-turbo",
+    temperature=0.2,
+    max_tokens=1000,
 )
 
-qa_chains_whith_sources = RetrievalQAWithSourcesChain.from_chain_type(
-    llm=llm,
-    chain_type="stuff",
-    retriever=retriever_chroma
+# Inicializar la conversación
+conversation = ConversationalRetrievalChain.from_llm(
+    llm=llm, retriever=vectorstore_chroma.as_retriever(), verbose=True
 )
 
-class InputData(BaseModel):
-    text: str
+# Historial de la conversación
+conversation_history = []
 
 @app.post("/generate_text")
 async def generate_text(input_data: InputData):
     try:
-        # Realizar consultas al modelo con un rango aleatorio
-        num_queries = random.randint(25, 40)
-        responses = [qa_chains_whith_sources(input_data.text) for _ in range(num_queries)]
-        # Seleccionar aleatoriamente una respuesta de las generadas
-        random_response = random.choice(responses)
-        return {"generated_text": random_response}
+        query = input_data.text
+        response = process_query(query)
+        # Actualizar el historial de la conversación
+        conversation_history.append((query, response))
+        return {"generated_text": response}
     except Exception as e:
-        return  {"error": f"Error en la generación del texto: {e}"}
+        raise HTTPException(status_code=500, detail=f"Error en la generación del texto: {e}")
+
+@app.post("/send_feedback")
+async def send_feedback(feedback: Feedback):
+    try:
+        if feedback.good:
+            print("La respuesta es buena.")
+            # Aquí puedes realizar alguna acción con la retroalimentación positiva
+            prompt_feedback = "Buena respuesta"
+        else:
+            print("La respuesta no es buena.")
+            # Aquí puedes realizar alguna acción con la retroalimentación negativa
+            prompt_feedback = "Mala respuesta"
+        return {"message": "Feedback recibido correctamente."}
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error al procesar el feedback: {e}")
+
+def process_query(query):
+    global conversation_history
+    print("[La IA está pensando...]")
+    result = conversation({"question": query, "chat_history": conversation_history})
+    return result["answer"]

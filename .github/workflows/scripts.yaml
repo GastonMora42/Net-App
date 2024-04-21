@@ -1,0 +1,63 @@
+name: Run Scripts
+
+on:
+  schedule:
+    - cron: '0 */12 * * *'
+
+jobs:
+  continuous_training:
+    runs-on: ubuntu-latest
+    env:
+       OPENAI_API_KEY:  ${{ secrets.OPENAI_API_KEY  }}
+       MYCREDSGOOGLE:  ${{ secrets.MYCREDSGOOGLE  }}
+       NETJSON: ${{ secrets.NETJSON}}
+       PUSH_DB: ${{ secrets.PUSH_DB }}
+       
+  
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v2
+
+      - name: Configurar Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.11'  # Define la versión de Python que necesitas
+
+      - name: Install dependencies
+        run: |
+          pip3 install virtualenv
+          virtualenv venv
+          source venv/bin/activate
+          pip install -r requirements.txt
+
+          echo "Dependencies Installed"
+
+      - name: Install dependencies
+        run: |
+          export NET_JSON=$(python utilities/setter_service.py)
+          set NET_JSON
+
+      - name: Run Python Scripts
+        run: |
+          source venv/bin/activate  # Activar entorno virtual
+          python get_last_file.py  # Ejecutar script1 desde src
+          python convert.py  # Ejecutar script2 desde src
+          python prepare.py  # Ejecutar script3 desde src
+          python train_model.py  # Ejecutar script4 desde src
+
+          echo "Scripts Completedd"
+
+      - name: Check for changes
+        id: check_changes
+        run: |
+          git status --porcelain | grep . && echo "::set-output name=changes::true" || echo "::set-output name=changes::false"
+
+      - name: Push change
+        if: steps.check_changes.outputs.changes == 'true'
+        run: |
+          git config --global user.name 'GastonMora42'
+          git config --global user.email 'gaston-mora@hotmail.com'
+          git remote set-url origin https://github.com/GastonMora42/Net-App.git
+          git add .
+          git commit -m "Add resumen generado a raiz de los scripts"
+          git push origin memory

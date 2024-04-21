@@ -25,6 +25,12 @@ google-cloud-sdk/bin/anthoscli
 netsquared-407819-9ddae082973b.json
 # Ignorar archivos de credenciales de Google OAuth
 client_secrets.json
+net-deployer-and-storage.json
+mycreds.json
+
+
+net-deployer-and-storage.json
+
 mycreds.txt
 
 mycreds.json
