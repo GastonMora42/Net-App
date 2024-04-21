@@ -1,19 +1,8 @@
 name: Run Scripts
 
 on:
-  push:
-    branches:
-      - main
-      - actions
-      - memory
   schedule:
-    - cron: '0 */4 * * *'
-  workflow_dispatch:
-    inputs:
-      reason:
-        description: Why to run this?
-        required: false
-        default: running CT
+    - cron: '0 */12 * * *'
 
 jobs:
   continuous_training:
