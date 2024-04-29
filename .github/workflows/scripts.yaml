@@ -2,7 +2,7 @@ name: Run Scripts
 
 on:
   schedule:
-    - cron: '0 0 */3 * *'
+    - cron: '0 0 */1 * *'
 
 jobs:
   continuous_training:
@@ -60,4 +60,4 @@ jobs:
           git remote set-url origin https://github.com/GastonMora42/Net-App.git
           git add .
           git commit -m "Add resumen generado a raiz de los scripts"
-          git push origin memory
+          git push origin main
