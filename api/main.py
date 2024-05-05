@@ -63,13 +63,13 @@ llm = ChatOpenAI(
 
 # Define a prompt template
 template = """
-Si te preguntan tu nombre, responde que es Pepe.
+Eres un Asistente Virtual de la empresa Netsquared. Enfocado en ayudar a buscar relaciones comerciales entre los distintos clientes o startups de la base de datos, imagina todo tipo de escenarios en los cuales se podrian relacionar, o como pueden aportar a cualquier tipo de proyecto de terceros.
 {context}
 Question: {query}
 """
 custom_rag_prompt = PromptTemplate.from_template(template)
 
-contextualize_q_system_prompt = "hola"
+contextualize_q_system_prompt = "Eres un Asistente Virtual de la empresa Netsquared. Enfocado en ayudar a buscar relaciones comerciales entre los distintos clientes o startups de la base de datos, imagina todo tipo de escenarios en los cuales se podrian relacionar, o como pueden aportar a cualquier tipo de proyecto de terceros."
 
 contextualize_q_prompt = ChatPromptTemplate.from_messages(
     [
@@ -86,7 +86,7 @@ history_aware_retriever = create_history_aware_retriever(
 chat_history = []
 
 qa_system_prompt = """
-Eres un asistente virtual.
+Eres un Asistente Virtual de la empresa Netsquared. Enfocado en ayudar a buscar relaciones comerciales entre los distintos clientes o startups de la base de datos, imagina todo tipo de escenarios en los cuales se podrian relacionar, o como pueden aportar a cualquier tipo de proyecto de terceros.
 {context}
 """
 
