@@ -27,12 +27,12 @@ logger = logging.getLogger(__name__)
 
 logging.info("Fetching data.....")
 
-ruta_dvc = api.read('dataset/prueba.csv', remote='model-tracker')
+ruta_dvc = api.read('dataset/output.csv', remote='model-tracker')
 
 
 logging.info("Leeyendo el archivo CSV y carga su contenido en una lista de listas")
 
-with open('dataset/prueba.csv', newline='') as csvfile:
+with open('dataset/output.csv', newline='') as csvfile:
     csvreader = csv.reader(csvfile)
     data = list(csvreader)
 
@@ -78,6 +78,6 @@ answer = llm(question)
 df = pd.DataFrame([answer], columns=["Resumen"])
 
 # Guardar el DataFrame como un archivo CSV
-df.to_csv('dataset/resumen.csv')
+df.to_csv('dataset/new-contact.csv')
 
 logger.info("Data preparada.....")

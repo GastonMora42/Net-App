@@ -2,7 +2,7 @@ name: Run Scripts
 
 on:
   schedule:
-    - cron: '0 0 */20 * *'
+    - cron: '0 0 */7 * *'
 
 jobs:
   continuous_training:
@@ -51,13 +51,3 @@ jobs:
         id: check_changes
         run: |
           git status --porcelain | grep . && echo "::set-output name=changes::true" || echo "::set-output name=changes::false"
-
-      - name: Push change
-        if: steps.check_changes.outputs.changes == 'true'
-        run: |
-          git config --global user.name 'GastonMora42'
-          git config --global user.email 'gaston-mora@hotmail.com'
-          git remote set-url origin https://github.com/GastonMora42/Net-App.git
-          git add .
-          git commit -m "Add resumen generado a raiz de los scripts"
-          git push origin main
