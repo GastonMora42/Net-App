@@ -18,6 +18,7 @@ import logging
 from sklearn.pipeline import Pipeline
 from langchain.embeddings import OpenAIEmbeddings
 import os
+import pymongo
 from pymongo import MongoClient
 from langchain.vectorstores import MongoDBAtlasVectorSearch
 
