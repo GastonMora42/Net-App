@@ -38,7 +38,7 @@ index_name="index_name"
 client = MongoClient(connection_string)
 collection = client[db_name][collection_name]
 
-loader = CSVLoader(file_path='dataset/Contacts-Main View.csv')
+loader = CSVLoader(file_path='dataset/new-contact.csv')
 data = loader.load()
 
 collection.delete_many({});
