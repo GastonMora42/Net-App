@@ -46,7 +46,8 @@ for doc in docs:
             content = doc  # Si el documento es una cadena, considerarlo como el contenido directamente
 
     # Crear un objeto Document con el contenido extraído
-    document = Document(content=content, metadata={})
+    metadata = {}  # Puedes ajustar la metadata según sea necesario
+    document = Document(page_content=content, metadata=metadata)
 
     # Calcular el embedding para el documento
     embedding = embeddings.embed(content)
