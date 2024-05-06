@@ -1,18 +1,17 @@
 ,Resumen
-0,"
-Se debe considerar que el texto mencionado contiene errores ortográficos y omite información importante, como el nombre de las personas involucradas y la fecha de la reunión. Por lo tanto, se procederá a crear un json con la información disponible y corregir los errores ortográficos:
-
-{
-  ""Nombre"": ""Bruno"",
-  ""Apellido"": ""Torossi"",
-  ""Empresa"": """",
-  ""Email"": """",
-  ""Interacciones"": """",
-  ""Especialidad"": """",
-  ""Twitter"": """",
-  ""Teléfono"": """",
-  ""País"": """",
-  ""Último contacto"": """",
-  ""Sitio web"": """",
-  ""LinkedIn"": """",
-  ""Conclusion detallada de la reunión"": ""En esta reunión se discutió sobre cómo crear un espacio para que el líder de un proyecto pueda interactuar con sus aportantes. Se propusieron diferentes opciones como un chat, un foro o la posibilidad de organizar reuniones para mantener a los aportantes al tanto del proyecto. También se mencionó la posibilidad de utilizar un foro de gobernanza de Polkadot. Se acordó seguir explorando estas opciones y definir una estr"
+0,"Highlights
+Use the highlighting tool in Tactiq during the meeting to collect all highlights in this section.
+""""
+Nombre: Bruno
+Apellido: Torossi
+Empresa: -
+Email: -
+Interactions: Chat, foro, contacto con aportantes
+Especialidad: UX, frontend
+Twitter: -
+Teléfono: -
+Pais: -
+Ultimo contacto: -
+Sitio Web: -
+LinkedIn: -
+Conclusion detallada de la reunion: Discutieron sobre la creación de un espacio para que los líderes de proyectos puedan interactuar con sus aportantes. Se mencionaron opciones como un chat, foro y contacto directo con los aportantes. También se mencionó la idea de crear un foro en la plataforma Polcador. Se concluyó que la opción más viable sería la de un chat o foro en la plataforma del proyecto."
