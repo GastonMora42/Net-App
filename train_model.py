@@ -45,14 +45,16 @@ for doc in docs:
         elif isinstance(doc, str):
             content = doc  # Si el documento es una cadena, considerarlo como el contenido directamente
 
-    # Crear un objeto Document con el contenido extraído
-    metadata = {}  # Puedes ajustar la metadata según sea necesario
-    document = Document(page_content=content, metadata=metadata)
+    # Verificar si el contenido es válido antes de crear un Document
+    if content:
+        # Crear un objeto Document con el contenido extraído
+        metadata = {}  # Puedes ajustar la metadata según sea necesario
+        document = Document(page_content=content, metadata=metadata)
 
-    # Calcular el embedding para el documento
-    embedding = embeddings.embed(content)
+        # Calcular el embedding para el documento
+        embedding = embeddings.embed(content)
 
-    # Insertar el documento y su embedding en MongoDB
-    vector_search.insert(document=document, embedding=embedding)
+        # Insertar el documento y su embedding en MongoDB
+        vector_search.insert(document=document, embedding=embedding)
 
 print("Documentos y embeddings insertados exitosamente en MongoDB.")
