@@ -48,15 +48,9 @@ embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
 docs = text_splitter.split_documents(data)
 
-result = client['your_database']['your_collection'].aggregate(docs)
-
-for document in result:
-    # Do something with each aggregated document
-    print(document)
-
-vector_search = MongoDBAtlasVectorSearch.from_documents(
-    documents=document,
+db_name.insert(vector_search = MongoDBAtlasVectorSearch.from_documents(
+    documents=docs,
     embedding=OpenAIEmbeddings(disallowed_special=()),
     collection=collection,
     index_name=index_name,
-)
+))
