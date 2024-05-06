@@ -25,7 +25,7 @@ data = loader.load()
 
 # Inicializar embeddings de OpenAI
 openai_api_key = os.environ.get("OPENAI_API_KEY")
-embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
+embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key, disallowed_special=())
 
 # Dividir documentos en fragmentos (chunks)
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
@@ -55,6 +55,6 @@ for doc in docs:
         embedding = embeddings.embed(content)
 
         # Insertar el documento y su embedding en MongoDB
-        vector_search.insert(document=document, embedding=embedding)
+        vector_search.insert(document=document, embedding=embedding, collection=collection, index_name=index_name)
 
 print("Documentos y embeddings insertados exitosamente en MongoDB.")
