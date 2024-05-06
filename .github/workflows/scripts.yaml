@@ -23,6 +23,7 @@ jobs:
        OPENAI_API_KEY:  ${{ secrets.OPENAI_API_KEY  }}
        MYCREDSGOOGLE:  ${{ secrets.MYCREDSGOOGLE  }}
        NETJSON: ${{ secrets.NETJSON}}
+       DRIVE_CREDS: ${{ secrets.DRIVE_CREDS }}
        PUSH_DB: ${{ secrets.PUSH_DB }}
        
   
