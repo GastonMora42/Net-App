@@ -51,11 +51,14 @@ docs = text_splitter.split_documents(data)
 vector_search = MongoDBAtlasVectorSearch(embedding=embeddings, collection=collection, index_name=index_name)
 
 for doc in docs:
-    # Convert document to langchain Document object
-    document = Document(content=doc.content, metadata=doc.metadata)
+    # Assuming doc has a 'text' attribute that contains the document content
+    content = doc.text
+
+    # Create a Document object with the content
+    document = Document(content=content, metadata={})
 
     # Calculate embedding for the document
-    embedding = embeddings.embed(doc.content)
+    embedding = embeddings.embed(content)
 
     # Insert document and its embedding into MongoDB
     vector_search.insert(document=document, embedding=embedding)
