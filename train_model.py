@@ -41,16 +41,14 @@ collection = client[db_name][collection_name]
 loader = CSVLoader(file_path='dataset/new-contact.csv')
 data = loader.load()
 
-collection.delete_many({});
-
 embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
 docs = text_splitter.split_documents(data)
 
-db_name.insert(vector_search = MongoDBAtlasVectorSearch.from_documents(
+vector_search = MongoDBAtlasVectorSearch.from_documents(
     documents=docs,
     embedding=OpenAIEmbeddings(disallowed_special=()),
     collection=collection,
     index_name=index_name,
-))
+)
