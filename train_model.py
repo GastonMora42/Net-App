@@ -45,7 +45,7 @@ for doc in docs:
         elif isinstance(doc, str):
             content = doc  # Si el documento es una cadena, considerarlo como el contenido directamente
 
-    # Verificar si el contenido es válido antes de crear un Document
+    # Verificar si el contenido es válido antes de crear un Documentde
     if content:
         # Crear un objeto Document con el contenido extraído
         metadata = {}  # Puedes ajustar la metadata según sea necesario
