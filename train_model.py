@@ -18,7 +18,6 @@ import logging
 from sklearn.pipeline import Pipeline
 from langchain.embeddings import OpenAIEmbeddings
 import os
-import pymongo
 from pymongo import MongoClient
 from langchain.vectorstores import MongoDBAtlasVectorSearch
 
@@ -39,7 +38,7 @@ index_name="index_name"
 client = MongoClient(connection_string)
 collection = client[db_name][collection_name]
 
-loader = CSVLoader(file_path='dataset/new-contact.csv')
+loader = CSVLoader(file_path='dataset/Contacts-Main View.csv')
 data = loader.load()
 
 collection.delete_many({});

@@ -10,8 +10,7 @@ sentence-transformers>=2.0.0
 numpy>=1.21.0
 retriever>=0.2.0
 pydrive
-pymongo==3.12.1
-bson==0.5.10
+pymongo
 tiktoken
 dvc
 python-docx
