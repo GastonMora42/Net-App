@@ -1,11 +1,18 @@
 ,Resumen
-0,"Highlights
-Use the highlighting tool in Tactiq during the meeting to collect all highlights in this section.
-""""
-""""
-Transcript
-""00:00 Bruno Torossi: Sí, de hecho. De hecho ahí ahí pensaría, no, que a ver no es tampoco la idea tener que armar algo súper complejo ni nada, pero ver o sea. además de que sea un grupo o lo que sea que donde""
-""00:22 Lucas Malizia: para grabar esto tenía puesto para grabar esto, no?""
-""00:26 Bruno Torossi: Creo que sí, a ver, creo que está puesto. Sí, se supone que sí.""
-""00:43 Bruno Torossi (chat): Hola, estoy transcribiendo esta llamada con mi extensión Tactiq AI (https://tactiq.io/r/transcribing)""
-""00:44 Bruno Torossi: Qué era lo que decía? Ah, que que lo que pensaba es entonces que en esto, o sea hay que ver cómo creamos que este espacio, o sea una vez que se crea un que se crea un proyecto y que ya tiene por ejemplo a sus aportantes"
+0,"
+Se debe considerar que el texto mencionado contiene errores ortográficos y omite información importante, como el nombre de las personas involucradas y la fecha de la reunión. Por lo tanto, se procederá a crear un json con la información disponible y corregir los errores ortográficos:
+
+{
+  ""Nombre"": ""Bruno"",
+  ""Apellido"": ""Torossi"",
+  ""Empresa"": """",
+  ""Email"": """",
+  ""Interacciones"": """",
+  ""Especialidad"": """",
+  ""Twitter"": """",
+  ""Teléfono"": """",
+  ""País"": """",
+  ""Último contacto"": """",
+  ""Sitio web"": """",
+  ""LinkedIn"": """",
+  ""Conclusion detallada de la reunión"": ""En esta reunión se discutió sobre cómo crear un espacio para que el líder de un proyecto pueda interactuar con sus aportantes. Se propusieron diferentes opciones como un chat, un foro o la posibilidad de organizar reuniones para mantener a los aportantes al tanto del proyecto. También se mencionó la posibilidad de utilizar un foro de gobernanza de Polkadot. Se acordó seguir explorando estas opciones y definir una estr"
