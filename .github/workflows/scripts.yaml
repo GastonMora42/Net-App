@@ -1,8 +1,11 @@
 name: Run Scripts
 
 on:
+ push:
+    branches:
+      - mongodb
   schedule:
-    - cron: '0 0 */7 * *'
+    - cron: '0 0 */7 * *' #Sid
 
 jobs:
   continuous_training:
