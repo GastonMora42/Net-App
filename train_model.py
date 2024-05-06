@@ -1,66 +1,57 @@
 from dvc.api import read
 import pandas as pd
-import numpy
-import openai
-import langchain
-from langchain.document_loaders.csv_loader import CSVLoader
-from langchain.embeddings import SentenceTransformerEmbeddings
-from langchain.schema import Document
-from langchain.vectorstores import Chroma
-from datetime import datetime
-from io import StringIO
-from langchain.chains import RetrievalQAWithSourcesChain
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-import random
-import sys
-from langchain.chat_models import ChatOpenAI
-import logging
-from sklearn.pipeline import Pipeline
-from langchain.embeddings import OpenAIEmbeddings
+import numpy as np
 import os
 from pymongo import MongoClient
 from langchain.vectorstores import MongoDBAtlasVectorSearch
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.schema import Document
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain.document_loaders.csv_loader import CSVLoader
 
-api_key = os.environ.get("OPENAI_API_KEY")
-openai_api_key = os.environ.get("OPENAI_API_KEY")
-
-embeddingopenai = OpenAIEmbeddings(
-    model="text-embedding-3-large"
-)
-
+# Configuración de la conexión a MongoDB
 connection_string = "mongodb+srv://gastonmora1742:jIhdEUoE9FWAcunB@jett-cluster.psm4rdx.mongodb.net/"
 db_name = "index-contactos"
 collection_name = "index"
 index_name = "index_name"
 
+# Inicialización del cliente de MongoDB
 client = MongoClient(connection_string)
 collection = client[db_name][collection_name]
 
-# Load CSV data
+# Cargar datos desde un archivo CSV
 loader = CSVLoader(file_path='dataset/new-contact.csv')
 data = loader.load()
 
-# Initialize OpenAI embeddings
+# Inicializar embeddings de OpenAI
+openai_api_key = os.environ.get("OPENAI_API_KEY")
 embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
 
-# Split documents into chunks
+# Dividir documentos en fragmentos (chunks)
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
 docs = text_splitter.split_documents(data)
 
-# Insert documents and embeddings into MongoDB using MongoDBAtlasVectorSearch
+# Inicializar búsqueda de vectores en MongoDB
 vector_search = MongoDBAtlasVectorSearch(embedding=embeddings, collection=collection, index_name=index_name)
 
+# Iterar sobre los documentos y procesar cada uno
 for doc in docs:
-    # Assuming doc has a 'text' attribute that contains the document content
-    content = doc.text
+    # Obtener el contenido del documento de manera genérica
+    content = getattr(doc, 'content', None)  # Intentar acceder al atributo 'content' del documento
+    if content is None:
+        # Si 'content' no está disponible, intentar otras formas de acceder al contenido
+        if isinstance(doc, dict):
+            content = doc.get('text', '')  # Intentar obtener 'text' de un diccionario
+        elif isinstance(doc, str):
+            content = doc  # Si el documento es una cadena, considerarlo como el contenido directamente
 
-    # Create a Document object with the content
+    # Crear un objeto Document con el contenido extraído
     document = Document(content=content, metadata={})
 
-    # Calculate embedding for the document
+    # Calcular el embedding para el documento
     embedding = embeddings.embed(content)
 
-    # Insert document and its embedding into MongoDB
+    # Insertar el documento y su embedding en MongoDB
     vector_search.insert(document=document, embedding=embedding)
 
-print("Documents and embeddings inserted successfully into MongoDB.")
+print("Documentos y embeddings insertados exitosamente en MongoDB.")
