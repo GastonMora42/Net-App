@@ -41,7 +41,7 @@ for doc in docs:
     if content is None:
         # Si 'content' no está disponible, intentar otras formas de acceder al contenido
         if isinstance(doc, dict):
-            content = doc.get('text', '')  # Intentar obtener 'text' de un diccionario
+            content = doc.get('text', '')  # Intentar obtener 'text' de un diccionariosxe
         elif isinstance(doc, str):
             content = doc  # Si el documento es una cadena, considerarlo como el contenido directamente
 
@@ -54,7 +54,9 @@ for doc in docs:
         # Calcular el embedding para el documento
         embedding = embeddings.embed(content)
 
-        # Insertar el documento y su embedding en MongoDB
-        vector_search.insert(document=document, embedding=embedding, collection=collection, index_name=index_name)
+    try:
+       vector_search.insert(document=document, embedding=embedding, collection=collection, index_name=index_name)
+    except Exception as e:
+     print(f"Error al insertar en MongoDB: {e}")
 
 print("Documentos y embeddings insertados exitosamente en MongoDB.")
