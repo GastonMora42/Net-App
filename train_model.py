@@ -19,7 +19,7 @@ index_name = "index_name"
 client = MongoClient(connection_string)
 collection = client[db_name][collection_name]
 
-# Cargar datos desde un archivo CSV
+# Cargar datos desde un archivo CSVs
 loader = CSVLoader(file_path='dataset/new-contact.csv')
 data = loader.load()
 
