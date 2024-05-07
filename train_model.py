@@ -40,6 +40,8 @@ collection = client[db_name][collection_name]
 loader = CSVLoader(file_path='dataset/Contacts-Main View.csv')
 data = loader.load()
 
+#Try
+
 embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
