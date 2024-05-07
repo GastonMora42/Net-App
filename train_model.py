@@ -32,31 +32,12 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=15
 docs = text_splitter.split_documents(data)
 
 # Inicializar búsqueda de vectores en MongoDB
-vector_search = MongoDBAtlasVectorSearch(embedding=embeddings, collection=collection, index_name=index_name)
+vector_search = MongoDBAtlasVectorSearch(document=docs, embedding=embeddings, collection=collection, index_name=index_name)
 
-# Iterar sobre los documentos y procesar cada uno
-for doc in docs:
-    # Obtener el contenido del documento de manera genérica
-    content = getattr(doc, 'content', None)  # Intentar acceder al atributo 'content' del documento
-    if content is None:
-        # Si 'content' no está disponible, intentar otras formas de acceder al contenido
-        if isinstance(doc, dict):
-            content = doc.get('text', '')  # Intentar obtener 'text' de un diccionariosxe
-        elif isinstance(doc, str):
-            content = doc  # Si el documento es una cadena, considerarlo como el contenido directamente
+# Obtener el embedding del documento
+embedding = embeddings.embed(docs.page_content)
 
-    # Verificar si el contenido es válido antes de crear un Documentde
-    if content:
-        # Crear un objeto Document con el contenido extraído
-        metadata = {}  # Puedes ajustar la metadata según sea necesario
-        document = Document(page_content=content, metadata=metadata)
-
-        # Calcular el embedding para el documento
-        embedding = embeddings.embed(content)
-
-    try:
-       vector_search.insert(document=document, embedding=embedding, collection=collection, index_name=index_name)
-    except Exception as e:
-     print(f"Error al insertar en MongoDB: {e}")
+# Almacenar el vector en MongoDB
+vector_search.store_vector(document=docs, embedding=embedding, collection=collection)
 
 print("Documentos y embeddings insertados exitosamente en MongoDB.")
