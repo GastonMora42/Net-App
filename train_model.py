@@ -34,7 +34,8 @@ db_name="netsquared-db";
 collection_name="contactos";
 index_name="embbeding-contactos"
 
-client = MongoClient(connection_string)
+# Conexión a la base de datos de MongoDB
+client = MongoClient("mongodb://localhost:27017", connection_string)
 collection = client[db_name][collection_name]
 
 loader = CSVLoader(file_path='dataset/new-contact.csv')
