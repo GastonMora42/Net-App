@@ -47,8 +47,10 @@ embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
 docs = text_splitter.split_documents(data)
 
+collection.delete_many({})
+
 vector_search = MongoDBAtlasVectorSearch.from_documents(
-    documents=docs,
+    docs,
     embedding=OpenAIEmbeddings(disallowed_special=()),
     collection=collection,
 )
