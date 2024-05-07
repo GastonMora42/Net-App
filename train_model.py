@@ -29,7 +29,7 @@ embeddingopenai = OpenAIEmbeddings(
     model="text-embedding-3-large"
 )
 
-connection_string="mongodb+srv://netsquared-db:L0PFljJA6c9bJNbV@netsquared-cluster.jmzk3jk.mongodb.net/";
+connection_string="mongodb+srv://netsquared-db:L0PFljJA6c9bJNbV@netsquared-cluster.jmzk3jk.mongodb.net:27017/";
 db_name="netsquared-db";
 collection_name="contactos";
 index_name="embbeding-contactos"
