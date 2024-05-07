@@ -30,15 +30,15 @@ embeddingopenai = OpenAIEmbeddings(
     model="text-embedding-3-large"
 )
 
-connection_string="mongodb+srv://gastonmora1742:jIhdEUoE9FWAcunB@jett-cluster.psm4rdx.mongodb.net/";
-db_name="index-contactos";
-collection_name="index";
-index_name="index_name"
+connection_string="mongodb+srv://netsquared-db:L0PFljJA6c9bJNbV@netsquared-cluster.jmzk3jk.mongodb.net/";
+db_name="netsquared-db";
+collection_name="contactos";
+index_name="embbeding-contactos"
 
 client = MongoClient(connection_string)
 collection = client[db_name][collection_name]
 
-loader = CSVLoader(file_path='dataset/new-contact.csv')
+loader = CSVLoader(file_path='dataset/Contacts-Main View.csv')
 data = loader.load()
 
 embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)

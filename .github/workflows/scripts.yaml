@@ -3,6 +3,7 @@ name: Run Scripts
 on:
   push:
     branches:
+      - main
       - mongodb
   schedule:
     - cron: '0 */9 * * *'
