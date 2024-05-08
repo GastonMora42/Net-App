@@ -48,7 +48,7 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=15
 docs = text_splitter.split_documents(data)
 
 vector_search = MongoDBAtlasVectorSearch.from_documents(
-    data,
+    documents=docs,
     embedding=OpenAIEmbeddings(disallowed_special=()),
     collection=collection,
 )
