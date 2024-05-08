@@ -5,7 +5,7 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.embeddings import OpenAIEmbeddings
 import os
 import pymongo
-from pymongo import MongoClient
+from pymongo.mongo_client import MongoClient
 from langchain.vectorstores import MongoDBAtlasVectorSearch
 from langchain_community.document_loaders.mongodb import MongodbLoader
 
@@ -15,8 +15,8 @@ embeddingopenai = OpenAIEmbeddings(
     model="text-embedding-3-large"
 )
 
-connection_string="mongodb+srv://netsquared:jalAcjL8zTQrDPMa@netsquared-cluster.jmzk3jk.mongodb.net/";
-db_name="net";
+connection_string="mongodb+srv://netsquared:jalAcjL8zTQrDPMa@netsquared-cluster.jmzk3jk.mongodb.net/?retryWrites=true&w=majority&appName=Netsquared-Cluster";
+db_name="netsquared-db";
 collection_name="contactos";
 index_name="embbeding-contactos"
 
@@ -37,4 +37,5 @@ vector_search = MongoDBAtlasVectorSearch.from_documents(
     documents=data,
     embedding=OpenAIEmbeddings(disallowed_special=()),
     collection=collection,
+    index_name=index_name
 )
