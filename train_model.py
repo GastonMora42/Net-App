@@ -1,21 +1,7 @@
 from dvc.api import read
 import pandas as pd
-import numpy
-import openai
-import langchain
 from langchain.document_loaders.csv_loader import CSVLoader
-from langchain.embeddings import SentenceTransformerEmbeddings
-from langchain.schema import Document
-from langchain.vectorstores import Chroma
-from datetime import datetime
-from io import StringIO
-from langchain.chains import RetrievalQAWithSourcesChain
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-import random
-import sys
-from langchain.chat_models import ChatOpenAI
-import logging
-from sklearn.pipeline import Pipeline
 from langchain.embeddings import OpenAIEmbeddings
 import os
 import pymongo
@@ -41,11 +27,9 @@ collection = client[db_name][collection_name]
 loader = CSVLoader(file_path='dataset/new-contact.csv')
 data = loader.load()
 
-#Try-2.0..
-
 embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
 
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
 docs = text_splitter.split_documents(data)
 
 vector_search = MongoDBAtlasVectorSearch.from_documents(
