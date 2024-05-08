@@ -23,7 +23,7 @@ collection_name="contactos";
 index_name="embbeding-contactos"
 
 client = MongoClient(connection_string, server_api=ServerApi('1'))
-collection = client[db_name][collection_name]
+collection = client[collection_name]
 
 loader = CSVLoader(file_path='dataset/new-contact.csv')
 data = loader.load()
