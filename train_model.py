@@ -7,7 +7,6 @@ import os
 import pymongo
 from pymongo import MongoClient
 from langchain.vectorstores import MongoDBAtlasVectorSearch
-
 from langchain_community.document_loaders.mongodb import MongodbLoader
 
 openai_api_key = os.environ.get("OPENAI_API_KEY")
@@ -33,7 +32,7 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=15
 docs = text_splitter.split_documents(data)
 
 vector_search = MongoDBAtlasVectorSearch.from_documents(
-    documents=docs,
+    documents=data,
     embedding=OpenAIEmbeddings(disallowed_special=()),
     collection=collection,
 )
