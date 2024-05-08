@@ -50,7 +50,7 @@ docs = text_splitter.split_documents(data)
 collection.delete_many({})
 
 vector_search = MongoDBAtlasVectorSearch.from_documents(
-    docs,
+    data,
     embedding=OpenAIEmbeddings(disallowed_special=()),
     collection=collection,
 )
