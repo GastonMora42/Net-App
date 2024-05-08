@@ -34,10 +34,9 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=15
 docs = text_splitter.split_documents(data)
 
 vector_search = MongoDBAtlasVectorSearch.from_connection_string(
-    connection_string = connection_string,
-    namespace = "netsquared-db",
+    connection_string=connection_string,
+    namespace="netsquared-db.contactos",
     documents=docs,
     embedding=OpenAIEmbeddings(disallowed_special=()),
-    collection="contactos",
     index_name=index_name
 )
