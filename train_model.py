@@ -36,7 +36,7 @@ docs = text_splitter.split_documents(data)
 
 vector_search = MongoDBAtlasVectorSearch.from_documents(
     documents=docs,
-    embedding=OpenAIEmbeddings,
+    embedding=OpenAIEmbeddings(disallowed_special=()),
     collection=collection,
     index_name=index_name
 )
