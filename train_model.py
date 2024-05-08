@@ -35,9 +35,9 @@ docs = text_splitter.split_documents(data)
 
 vector_search = MongoDBAtlasVectorSearch.from_connection_string(
     connection_string = connection_string,
-    namespace = "netsquared",
+    namespace = "netsquared-db",
     documents=docs,
     embedding=OpenAIEmbeddings(disallowed_special=()),
-    collection=collection,
+    collection="contactos",
     index_name=index_name
 )
