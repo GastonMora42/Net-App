@@ -13,6 +13,7 @@ from langchain_community.document_loaders.mongodb import MongodbLoader
 openai_api_key = os.environ.get("OPENAI_API_KEY")
 
 embeddingopenai = OpenAIEmbeddings(
+    openai_api_key=openai_api_key,
     model="text-embedding-3-large"
 )
 
@@ -26,17 +27,23 @@ collection = client[db_name][collection_name]
 
 #ed
 
-loader = CSVLoader(file_path='dataset/Contacts-Main View.csv')
+loader = CSVLoader(file_path='dataset/new-contact.csv')
 data = loader.load()
-
-embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
 docs = text_splitter.split_documents(data)
 
 vector_search = MongoDBAtlasVectorSearch.from_documents(
-    documents=docs,
-    embedding=OpenAIEmbeddings(disallowed_special=()),
+    embedding=embeddingopenai,
     collection=collection,
     index_name=index_name
 )
+
+# Usar la instancia de embeddings para procesar los documentos y generar embeddings
+embeddings_list = [embeddingopenai.embed(doc.content) for doc in docs]
+
+# Inicializar MongoDBAtlasVectorSearch con los embeddings generados
+vector_search = MongoDBAtlasVectorSearch(embedding=embeddingopenai, collection=collection, index_name=index_name)
+
+# Insertar los embeddings en MongoDBAtlasVectorSearch
+vector_search.add_texts(embeddings_list)
