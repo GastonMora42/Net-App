@@ -40,7 +40,7 @@ collection = client[db_name][collection_name]
 loader = CSVLoader(file_path='dataset/new-contact.csv')
 data = loader.load()
 
-#Try-2.0.
+#Try-2.0..
 
 embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
 
