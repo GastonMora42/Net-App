@@ -15,8 +15,8 @@ embeddingopenai = OpenAIEmbeddings(
     model="text-embedding-3-large"
 )
 
-connection_string="mongodb+srv://netsquared:jalAcjL8zTQrDPMa@netsquared-cluster.jmzk3jk.mongodb.net/?retryWrites=true&w=majority&appName=Netsquared-Cluster";
-db_name="netsquared-db";
+connection_string="mongodb+srv://tomasfotos25:o0Mu71kRZVlH9NGA@cluster0.lz91auo.mongodb.net/";
+db_name="neto";
 collection_name="contactos";
 index_name="embbeding-contactos"
 
@@ -37,5 +37,4 @@ vector_search = MongoDBAtlasVectorSearch.from_documents(
     documents=data,
     embedding=OpenAIEmbeddings(disallowed_special=()),
     collection=collection,
-    index_name=index_name
 )
