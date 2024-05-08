@@ -17,7 +17,7 @@ embeddingopenai = OpenAIEmbeddings(
 )
 
 connection_string="mongodb+srv://netsquared:jalAcjL8zTQrDPMa@netsquared-cluster.jmzk3jk.mongodb.net/";
-db_name="netsquared";
+db_name="netsquared-db";
 collection_name="contactos";
 index_name="embbeding-contactos"
 
@@ -29,11 +29,12 @@ data = loader.load()
 
 embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
 
-text_splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
+text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
 docs = text_splitter.split_documents(data)
 
 vector_search = MongoDBAtlasVectorSearch.from_documents(
     documents=docs,
     embedding=OpenAIEmbeddings(disallowed_special=()),
     collection=collection,
+    index_name=index_name
 )
