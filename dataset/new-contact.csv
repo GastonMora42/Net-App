@@ -1,19 +1,10 @@
 ,Resumen
-0,"
-Tabla JSON:
+0,"Highlights
+Use the highlighting tool in Tactiq during the meeting to collect all highlights in this section.
 
-{
-  ""Nombre"": ""Juan Manuel"",
-  ""Apellido"": ""Mitidiero"",
-  ""Empresa"": """",
-  ""Email"": """",
-  ""Interactions"": """",
-  ""Especialidad"": """",
-  ""Twitter"": """",
-  ""Teléfono"": """",
-  ""Pais"": """",
-  ""Ultimo contacto"": """",
-  ""Sitio Web"": """",
-  ""LinkedIn"": """",
-  ""Conclusion detallada de la reunion"": ""Hablaron sobre su trabajo y sobre cómo les gusta cambiar de lugar para trabajar, especialmente estar de pie. Bruno mencionó su extensión de Tactiq para transcribir la llamada."" 
-}"
+Tabla de datos:
+
+| Nombre | Apellido | Empresa | Email | Interactions | Especialidad | Twitter | Teléfono | País | Último contacto | Sitio Web | LinkedIn | Conclusion detallada de la reunión |
+|--------|----------|---------|-------|--------------|--------------|---------|----------|------|----------------|-----------|----------|----------------------------------|
+| Bruno | Torossi | - | - | - | - | - | - | - | - | - | - | Hola, todo bien? Bien, todo tranquilo. Tu oficina la ocupas de oficina ahí o no? |
+| Juan Manuel | Mitidiero | - | - | - | - | - | - | - | - | - | - | Recién llegado acá a un bar. Co después en mi caso estoy, pero voy como caminando por la casa. de la cocina un poco así, pero bueno, este no no me gusta estar sentado. saben hasta allá y para salir un poco, pero todavía no puedo. pero ponele pero bueno. Yo yo me"
