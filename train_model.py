@@ -41,12 +41,3 @@ vector_search = MongoDBAtlasVectorSearch.from_documents(
     collection=collection,
     index_name=index_name
 )
-
-# Usar la instancia de embeddings para procesar los documentos y generar embeddings
-embeddings_list = [embeddingopenai.embed(doc.content) for doc in docs]
-
-# Inicializar MongoDBAtlasVectorSearch con los embeddings generados
-vector_search = MongoDBAtlasVectorSearch(embedding=embeddingopenai, collection=collection, index_name=index_name)
-
-# Insertar los embeddings en MongoDBAtlasVectorSearch
-vector_search.add_texts(embeddings_list)
