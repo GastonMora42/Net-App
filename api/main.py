@@ -43,6 +43,10 @@ embedding_openai = OpenAIEmbeddings(
     openai_api_key=os.environ.get("OPENAI_API_KEY")
 )
 
+# Conexión a la base de datos de MongoDB
+client = MongoClient("mongodb://localhost:27017")
+db = client["my_database"]
+collection = db["my_collection"]
 
 # Instantiate Atlas Vector Search as a retriever
 retriever = vector_search.as_retriever(

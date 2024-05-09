@@ -27,13 +27,11 @@ collection = client[db_name][collection_name]
 
 #ed
 
-loader = CSVLoader(file_path='dataset/new-contact.csv')
+loader = CSVLoader(file_path='dataset/Contacts-Main View.csv')
 data = loader.load()
 
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
 docs = text_splitter.split_documents(data)
-
-collection.delete_many({})
 
 vector_search = MongoDBAtlasVectorSearch.from_documents(
     docs,
