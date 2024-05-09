@@ -11,6 +11,7 @@ jobs:
        OPENAI_API_KEY:  ${{ secrets.OPENAI_API_KEY  }}
        MYCREDSGOOGLE:  ${{ secrets.MYCREDSGOOGLE  }}
        NETJSON: ${{ secrets.NETJSON}}
+       DRIVE_CREDS: ${{ secrets.DRIVE_CREDS }}
        PUSH_DB: ${{ secrets.PUSH_DB }}
        
   
@@ -25,11 +26,11 @@ jobs:
 
       - name: Install dependencies
         run: |
+          pip3 cache purge
           pip3 install virtualenv
           virtualenv venv
           source venv/bin/activate
           pip install -r requirements.txt
-
           echo "Dependencies Installed"
 
       - name: Install dependencies
@@ -51,7 +52,7 @@ jobs:
         id: check_changes
         run: |
           git status --porcelain | grep . && echo "::set-output name=changes::true" || echo "::set-output name=changes::false"
-
+         
       - name: Push change
         if: steps.check_changes.outputs.changes == 'true'
         run: |
@@ -59,5 +60,5 @@ jobs:
           git config --global user.email 'gaston-mora@hotmail.com'
           git remote set-url origin https://github.com/GastonMora42/Net-App.git
           git add .
-          git commit -m "Add resumen generado a raiz de los scripts"
+          git commit -m "Add new contact generado a raiz de los scripts"
           git push origin main

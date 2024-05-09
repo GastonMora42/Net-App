@@ -29,11 +29,10 @@ logging.info("Fetching data.....")
 
 ruta_dvc = api.read('dataset/output.csv', remote='model-tracker')
 
-contacts_data = pd.read_csv(StringIO(ruta_dvc))
 
 logging.info("Leeyendo el archivo CSV y carga su contenido en una lista de listas")
 
-with open('dataset/Contacts-Main View.csv', newline='') as csvfile:
+with open('dataset/output.csv', newline='') as csvfile:
     csvreader = csv.reader(csvfile)
     data = list(csvreader)
 
@@ -49,14 +48,29 @@ openai_api_key = os.environ.get("OPENAI_API_KEY")
 
 llm_gpt3_5 = OpenAI(
     model_name="gpt-4-turbo",
-    n=1,
+    n=3,
     temperature=0,
-    max_tokens=250,
+    max_tokens=1000,
     )
 
 llm = OpenAI()
 
-question = "Porfavor Generame un resumen detallado conservando a modo de variables las siguientes variables de datos (Nombre:,Apellido:,Empresa:,Pais:,Email:,Interacciones:,Especialidad:,Twitter:,Teléfono:,Ultima fecha de contacto:,Deck(pdf):,Sitio Web:,LinkedIn:,Comentarios relevantes:,Resumen por GPT de la reunion:) del contenido de" + csv_content
+##Crea un resumen en formato json a partir de los datos con la siguiente estructura.
+
+question = """Del siguiente texto creame un json con los datos que extraigas en formato de tabla. \n\n Evita mencionar Tactic.io y corrige los errores ortograficos. \n\n
+Nombre: 
+Apellido: 
+Empresa:
+Email: 
+Interactions: 
+Especialidad: 
+Twitter: 
+Teléfono: 
+Pais: 
+Ultimo contacto: 
+Sitio Web: 
+LinkedIn: 
+Conclusion detallada de la reunion: \n\n : \n\n""" + csv_content
 
 answer = llm(question)
 
@@ -64,12 +78,10 @@ answer = llm(question)
 df = pd.DataFrame([answer], columns=["Resumen"])
 
 # Guardar el DataFrame como un archivo CSV
-df.to_csv('dataset/resumen-contacts.csv')
+df.to_csv('dataset/new-contact.csv')
 
 # Obtener la clave SSH desde el secreto de GitHub
 ssh_private_key = os.environ.get("PUSH_DB")
-
-#Probamos
 
 # Guardar la clave SSH en un archivo temporal
 with open('/tmp/id_rsa', 'w') as f:
@@ -88,5 +100,6 @@ subprocess.run(['chmod', '600', '/tmp/id_rsa'])
 
 # Copiar la clave SSH al directorio .ssh
 subprocess.run(['cp', '/tmp/id_rsa', f'{ssh_dir}/id_rsa'])
+
 
 logger.info("Data preparada.....")
