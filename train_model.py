@@ -33,6 +33,8 @@ data = loader.load()
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
 docs = text_splitter.split_documents(data)
 
+#Cargamos nuevos datos a la database junto a su embedding
+
 vector_search = MongoDBAtlasVectorSearch.from_documents(
     documents=docs,
     embedding=OpenAIEmbeddings(disallowed_special=()),
