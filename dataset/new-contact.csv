@@ -1,17 +1,19 @@
 ,Resumen
 0,"
+Tabla JSON:
+
 {
-    ""Nombre"": ""Mateo"",
-    ""Apellido"": ""De Falco"",
-    ""Empresa"": ""No mencionada"",
-    ""Email"": ""No proporcionado"",
-    ""Interactions"": ""No proporcionado"",
-    ""Especialidad"": ""Operación crecimiento"",
-    ""Twitter"": ""No proporcionado"",
-    ""Teléfono"": ""No proporcionado"",
-    ""Pais"": ""No mencionado"",
-    ""Ultimo contacto"": ""No proporcionado"",
-    ""Sitio Web"": ""No proporcionado"",
-    ""LinkedIn"": ""No proporcionado"",
-    ""Conclusion detallada de la reunion"": ""En la reunión se discutió sobre el progreso en la operación crecimiento de la empresa, liderada por Mateo junto con Santi y otros miembros del equipo. Se destacó el potencial de esta iniciativa y se acordaron acciones a tomar en el futuro. También se mencionó que Bruno está transcribiendo la llamada con la extensión Tactiq AI.""
+  ""Nombre"": ""Juan Manuel"",
+  ""Apellido"": ""Mitidiero"",
+  ""Empresa"": """",
+  ""Email"": """",
+  ""Interactions"": """",
+  ""Especialidad"": """",
+  ""Twitter"": """",
+  ""Teléfono"": """",
+  ""Pais"": """",
+  ""Ultimo contacto"": """",
+  ""Sitio Web"": """",
+  ""LinkedIn"": """",
+  ""Conclusion detallada de la reunion"": ""Hablaron sobre su trabajo y sobre cómo les gusta cambiar de lugar para trabajar, especialmente estar de pie. Bruno mencionó su extensión de Tactiq para transcribir la llamada."" 
 }"
