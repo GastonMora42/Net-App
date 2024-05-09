@@ -25,8 +25,6 @@ index_name="embbeding-contactos"
 client = MongoClient(connection_string)
 collection = client[db_name][collection_name]
 
-#ed
-
 loader = CSVLoader(file_path='dataset/Contacts-Main View.csv')
 data = loader.load()
 
