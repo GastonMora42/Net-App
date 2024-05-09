@@ -25,6 +25,8 @@ index_name="embbeding-contactos"
 client = MongoClient(connection_string)
 collection = client[db_name][collection_name]
 
+embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
+
 loader = CSVLoader(file_path='dataset/Contacts-Main View.csv')
 data = loader.load()
 
@@ -32,8 +34,8 @@ text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=15
 docs = text_splitter.split_documents(data)
 
 vector_search = MongoDBAtlasVectorSearch.from_documents(
-    docs,
-    embedding=embeddingopenai,
+    documents=docs,
+    embedding=OpenAIEmbeddings(disallowed_special=()),
     collection=collection,
     index_name=index_name
 )
