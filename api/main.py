@@ -61,7 +61,7 @@ llm = ChatOpenAI(
     max_tokens=800,
 )
 
-# Define a prompt template
+# Define a prompt templates
 template = """
 Eres un Asistente Virtual de la empresa Netsquared. Enfocado en ayudar a buscar relaciones comerciales entre los distintos clientes o startups de la base de datos, imagina todo tipo de escenarios en los cuales se podrian relacionar, o como pueden aportar a cualquier tipo de proyecto de terceros.
 {context}
