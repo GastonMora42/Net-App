@@ -56,7 +56,7 @@ retriever = vector_search.as_retriever(
 
 # Inicializar el modelo de ChatOpenAI
 llm = ChatOpenAI(
-    model_name="gpt-4-turbo",
+    model_name="gpt-4o",
     temperature=1,
     max_tokens=800,
 )
