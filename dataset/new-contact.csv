@@ -1,14 +1,32 @@
 ,Resumen
-0,"Nombre: Liam
-Apellido: Said
-Empresa: GL Trading
-Email: No proporcionado
-Interactions: No proporcionado
-Especialidad: No proporcionado
-Twitter: No proporcionado
-Teléfono: No proporcionado
-Pais: No proporcionado
-Ultimo contacto: No proporcionado
-Sitio Web: No proporcionado 
-LinkedIn: No proporcionado
-Conclusion detallada de la reunion: La reunión fue breve y no se proporcionó información relevante para ser incluida en el json."
+0,"Highlights
+09:45 🎯: (GL Trading) K
+""31:07 💡: (Bruno) In today's video. Are you in? . Yeah Be going over a very important downside. But first, st I must consult with our instant financial abundance advisor over here and I will let him take it away from this moment.""
+35:40 🎯: (GL Trading) Go.
+Transcript
+00:00 Bruno: Bruno
+""00:00 GL Trading: GL""
+""00:07 Bruno: ""
+""00:10 GL Trading: ""
+00:24 Bruno: Bruno
+00:28 GL Trading: See
+00:37 Bruno: Bruno
+00:41 GL Trading: 
+""00:44 Bruno: Bruno""
+00:46 GL Trading: See
+
+json: 
+{
+    ""Nombre"": ""Bruno"",
+    ""Apellido"": ""Bruno"",
+    ""Empresa"": ""GL Trading"",
+    ""Email"": """",
+    ""Interactions"": """",
+    ""Especialidad"": """",
+    ""Twitter"": """",
+    ""Teléfono"": """",
+    ""Pais"": """",
+    ""Ultimo contacto"": """",
+    ""Sitio Web"": """",
+    ""LinkedIn"": """",
+    ""Conclusion detallada de la reunion"
