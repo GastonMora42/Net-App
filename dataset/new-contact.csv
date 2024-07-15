@@ -15,8 +15,10 @@ Transcript
 ""00:44 Bruno: Okay, and by""
 00:46 GL Trading: See. The Manana.
 
-Nombre: Bruno
-Apellido: N/A (no se menciona en el texto)
-Empresa: GL Trading
-Email: N/A (no se menciona en el texto)
-Interactions: 2 (09:45 🎯 y"
+{
+    ""Nombre"": ""Bruno"",
+    ""Apellido"": ""GL Trading"",
+    ""Empresa"": ""N/A"",
+    ""Email"": ""N/A"",
+    ""Interactions"": ""Two-way conversation"",
+    ""Especialidad"":"
