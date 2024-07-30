@@ -1,12 +1,19 @@
 ,Resumen
-0,"Highlights
-09:45 🎯: (GL Trading) K
-""31:07 💡: (Bruno) In today's video. Are you in? . Yeah Be going over a very important downside. But first, st I must consult with our instant financial abundance advisor over here and I will let him take it away from this moment.""
-35:40 🎯: (GL Trading) Go.
+0,"
+El json resultante sería:
 
-Tabla:
-
-| Nombre | Apellido | Empresa | Email | Interactions | Especialidad | Twitter | Teléfono | País | Último contacto | Sitio Web | LinkedIn | Conclusiones de la reunión |
-|--------|----------|---------|-------|--------------|--------------|---------|----------|------|----------------|-----------|----------|---------------------------|
-| Said | Liam | GL Trading | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
-| Bruno | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | ""Today's video, discussing important downside. Consulted with financial advisor. "" |"
+{
+    ""Nombre"": ""Bruno"",
+    ""Apellido"": ""Liam"",
+    ""Empresa"": ""GL Trading"",
+    ""Email"": """",
+    ""Interactions"": """",
+    ""Especialidad"": ""Instant financial abundance advisor"",
+    ""Twitter"": """",
+    ""Teléfono"": """",
+    ""Pais"": """",
+    ""Ultimo contacto"": """",
+    ""Sitio Web"": """",
+    ""LinkedIn"": """",
+    ""Conclusion detallada de la reunion"": ""En este video, Bruno habla sobre un importante downside y consulta con su asesor financiero de abundancia instantánea sobre el tema. Luego, GL Trading responde con su opinión."" 
+}"
