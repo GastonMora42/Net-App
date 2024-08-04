@@ -1,7 +1,18 @@
 ,Resumen
 0,"
-Tabla con los datos extraidos del texto:
-
-| Nombre    | Apellido | Empresa | Email | Interactions | Especialidad | Twitter | Teléfono | País | Último contacto | Sitio Web | LinkedIn | Conclusion detallada de la reunión |
-|-----------|----------|---------|-------|--------------|--------------|---------|----------|------|-----------------|-----------|----------|----------------------------------|
-| Said      | Liam     | GL Trading | No disponible | No disponible | No disponible | No disponible | No disponible | No disponible | No disponible | No disponible | No disponible | No disponible |"
+Tabla JSON: 
+{
+  ""Nombre"": ""Bruno"",
+  ""Apellido"": ""Liam"",
+  ""Empresa"": ""GL Trading"",
+  ""Email"": """",
+  ""Interactions"": ""Go."",
+  ""Especialidad"": """",
+  ""Twitter"": """",
+  ""Teléfono"": """",
+  ""Pais"": """",
+  ""Ultimo contacto"": ""00:46 GL Trading: See. The Manana."",
+  ""Sitio Web"": """",
+  ""LinkedIn"": """",
+  ""Conclusion detallada de la reunion"": ""In today's video. Are you in? . Yeah Be going over a very important downside. But first, st I must consult with our instant financial abundance advisor over here and I will let him take it away from this moment.""
+}"
