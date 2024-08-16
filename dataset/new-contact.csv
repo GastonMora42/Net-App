@@ -1,10 +1,43 @@
 ,Resumen
 0,"
 
-| Nombre | Apellido | Empresa | Email | Interactions | Especialidad | Twitter | Teléfono | País | Último contacto | Sitio Web | LinkedIn | Conclusion detallada de la reunión |
-|--------|----------|---------|-------|--------------|--------------|---------|-----------|------|----------------|-----------|----------|-----------------------------|
-| Said | Liam | GL Trading | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
-| Bruno | N/A | N/A | N/A | N/A | Instant Financial Abundance Advisor | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
-| GL Trading | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
-| N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A | N/A |
-| N/A | N/A | N/A | N/A | N/A | N/A | N"
+[
+  {
+    ""Nombre"": ""Said"",
+    ""Apellido"": ""Liam"",
+    ""Empresa"": ""GL Trading"",
+    ""Email"": """",
+    ""Interactions"": """",
+    ""Especialidad"": """",
+    ""Twitter"": """",
+    ""Teléfono"": """",
+    ""Pais"": """",
+    ""Ultimo contacto"": """",
+    ""Sitio Web"": """",
+    ""LinkedIn"": """",
+    ""Conclusion detallada de la reunion"": """"
+  },
+  {
+    ""Nombre"": ""Bruno"",
+    ""Apellido"": """",
+    ""Empresa"": """",
+    ""Email"": """",
+    ""Interactions"": """",
+    ""Especialidad"": """",
+    ""Twitter"": """",
+    ""Teléfono"": """",
+    ""Pais"": """",
+    ""Ultimo contacto"": """",
+    ""Sitio Web"": """",
+    ""LinkedIn"": """",
+    ""Conclusion detallada de la reunion"": ""In today's video, we will be discussing a very important topic. I consulted with our financial advisor and he will be leading the discussion.""
+  },
+  {
+    ""Nombre"": ""GL Trading"",
+    ""Apellido"": """",
+    ""Empresa"": """",
+    ""Email"": """",
+    ""Interactions"": """",
+    ""Especialidad"": """",
+    ""Twitter"": """",
+    """
