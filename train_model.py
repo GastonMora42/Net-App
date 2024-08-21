@@ -1,43 +1,75 @@
-from dvc.api import read
-import pandas as pd
-from langchain.document_loaders.csv_loader import CSVLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain.embeddings import OpenAIEmbeddings
 import os
-import pymongo
 from pymongo import MongoClient
-from pymongo.mongo_client import MongoClient
+from langchain.embeddings import OpenAIEmbeddings
 from langchain.vectorstores import MongoDBAtlasVectorSearch
-from langchain_community.document_loaders.mongodb import MongodbLoader
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain.schema import Document
 
+# Configuración de la conexión a MongoDB
+connection_string = "mongodb+srv://gastonmora1742:jIhdEUoE9FWAcunB@jett-cluster.psm4rdx.mongodb.net/"
+db_name = "test"
+collection_name = "users"
+index_name = "jett-index"
+
+# Inicialización del embedding de OpenAI
 openai_api_key = os.environ.get("OPENAI_API_KEY")
-
-embeddingopenai = OpenAIEmbeddings(
+embedding_openai = OpenAIEmbeddings(
     openai_api_key=openai_api_key,
-    model="text-embedding-3-large"
+    model="text-embedding-ada-002"
 )
-
-connection_string="mongodb+srv://netsquared:jalAcjL8zTQrDPMa@netsquared-cluster.jmzk3jk.mongodb.net/";
-db_name="netsquared-db";
-collection_name="contactos";
-index_name="embbeding-contactos"
 
 client = MongoClient(connection_string)
 collection = client[db_name][collection_name]
 
-embeddings = OpenAIEmbeddings(openai_api_key=openai_api_key)
+# Leer todos los documentos de la colección
+documents = list(collection.find())
 
-loader = CSVLoader(file_path='dataset/new-contact.csv')
-data = loader.load()
+# Campos relevantes para generar el texto
+field_names = ['name', 'username', 'email', 'bio', 'skills', 'skills2', 'skills3']
 
+# Función para generar embeddings y source, y actualizar el documento
+def generate_and_store_embeddings(doc):
+    if 'embedding' not in doc or 'source' not in doc:
+        text = " ".join(filter(None, [doc.get(field, "") for field in field_names]))
+        embedding = embedding_openai.embed_query(text)
+
+        # Generar el source basado en la información del documento
+        source = f"Document from collection {collection_name} with id {doc.get('_id')}"
+        
+        # Actualizar el documento en la base de datos con el embedding y el source
+        collection.update_one(
+            {'_id': doc['_id']},
+            {'$set': {'embedding': embedding, 'source': source}}
+        )
+
+# Inicializar el text splitter
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
-docs = text_splitter.split_documents(data)
 
-#Cargamos nuevos datos a la database junto a su embedding
+# Lista para almacenar todos los documentos divididos
+all_split_docs = []
 
-vector_search = MongoDBAtlasVectorSearch.from_documents(
-    documents=docs,
-    embedding=OpenAIEmbeddings(disallowed_special=()),
-    collection=collection,
-    index_name=index_name
-)
+# Procesar documentos
+for doc in documents:
+    try:
+        # Generar y almacenar embeddings y source si es un documento nuevo
+        generate_and_store_embeddings(doc)
+
+        # No es necesario dividir documentos si no se desea crear nuevos fragmentos
+        # Si fuera necesario dividir y almacenar, aquí iría la lógica
+
+    except KeyError as e:
+        print(f"Error procesando el documento {doc.get('_id')}: {e}")
+    except Exception as e:
+        print(f"Otro error ocurrió: {e}")
+
+
+    # Inicialización de la búsqueda vectorial en MongoDB usando from_documents
+    vector_search = MongoDBAtlasVectorSearch.from_documents(
+        documents=all_split_docs,
+        embedding=embedding_openai,
+        collection=collection,
+        index_name=index_name
+    )
+    print("Embeddings y sources generados correctamente, documentos divididos y búsqueda vectorial inicializada.")
+else:
+    print("No se encontraron documentos válidos para dividir.")
