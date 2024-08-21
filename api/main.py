@@ -39,19 +39,19 @@ class Feedback(BaseModel):
 
 # Inicialización global de objetos
 embedding_openai = OpenAIEmbeddings(
-    model="text-embedding-3-large",
+    model="text-embedding-ada-002",
     openai_api_key=os.environ.get("OPENAI_API_KEY")
 )
 
 # Conexión a la base de datos de MongoDB
-client = MongoClient("mongodb://localhost:27017")
+client = MongoClient("mongodb+srv://cluster-jett:1234cluster@jett-cluster.psm4rdx.mongodb.net/")
 db = client["my_database"]
 collection = db["my_collection"]
 
 # Instantiate Atlas Vector Search as a retriever
 retriever = vector_search.as_retriever(
     search_type="similarity",
-    search_kwargs={"k": 20, "score_threshold": 0.75}
+    search_kwargs={"k": 4, "score_threshold": 0.75}
 )
 
 # Inicializar el modelo de ChatOpenAI
