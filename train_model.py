@@ -44,7 +44,7 @@ def generate_and_store_embeddings(doc):
 # Inicializar el text splitter
 text_splitter = RecursiveCharacterTextSplitter(chunk_size=1000, chunk_overlap=150)
 
-# Lista para almacenar todos los documentos divididos
+# Lista para almacenar todos los documentos divididoss
 all_split_docs = []
 
 for doc in documents:
