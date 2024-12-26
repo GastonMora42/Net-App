@@ -1,12 +1,8 @@
 ,Resumen
-0,"Highlights
-09:45 🎯: (GL Trading) K
-""31:07 💡: (Bruno) In today's video. Are you in? . Yeah Be going over a very important downside. But first, st I must consult with our instant financial abundance advisor over here and I will let him take it away from this moment.""
-35:40 🎯: (GL Trading) Go.
+0,"Ejemplo de tabla JSON: 
 
-[
-  {
-    ""Nombre"": ""Said"",
+{
+    ""Nombre"": ""Bruno"",
     ""Apellido"": ""Liam"",
     ""Empresa"": ""GL Trading"",
     ""Email"": """",
@@ -18,11 +14,5 @@
     ""Ultimo contacto"": """",
     ""Sitio Web"": """",
     ""LinkedIn"": """",
-    ""Conclusion detallada de la reunion"": """"
-  },
-  {
-    ""Nombre"": ""Bruno"",
-    ""Apellido"": """",
-    ""Empresa"": """",
-    ""Email"": """",
-    ""Interactions"": ""💡: (Bruno) In today's video. Are you in? . Yeah Be going over a very important downside. But first, st I must consult with our instant financial abundance advisor over here and I will let"
+    ""Conclusion detallada de la reunion"": ""En la reunión se habló de un tema importante sobre el cual Bruno consultó con un asesor financiero. GL Trading estuvo presente y se acordó continuar la conversación en una próxima reunión."" 
+}"
