@@ -1,6 +1,5 @@
 ,Resumen
-0,"Ejemplo de tabla JSON: 
-
+0,"
 {
     ""Nombre"": ""Bruno"",
     ""Apellido"": ""Liam"",
@@ -14,5 +13,5 @@
     ""Ultimo contacto"": """",
     ""Sitio Web"": """",
     ""LinkedIn"": """",
-    ""Conclusion detallada de la reunion"": ""En la reunión se habló de un tema importante sobre el cual Bruno consultó con un asesor financiero. GL Trading estuvo presente y se acordó continuar la conversación en una próxima reunión."" 
+    ""Conclusion detallada de la reunion"": ""Hablan sobre una importante desventaja y se consultan con un asesor financiero. Se menciona una próxima reunión y luego se corta la comunicación.""
 }"
