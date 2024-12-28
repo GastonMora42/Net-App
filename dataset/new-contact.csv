@@ -1,17 +1,19 @@
 ,Resumen
 0,"
+Tabla JSON:
+
 {
-    ""Nombre"": ""Bruno"",
+    ""Nombre"": ""Said"",
     ""Apellido"": ""Liam"",
     ""Empresa"": ""GL Trading"",
     ""Email"": """",
     ""Interactions"": """",
-    ""Especialidad"": """",
+    ""Especialidad"": ""Financial Advisor"",
     ""Twitter"": """",
     ""Teléfono"": """",
     ""Pais"": """",
     ""Ultimo contacto"": """",
     ""Sitio Web"": """",
     ""LinkedIn"": """",
-    ""Conclusion detallada de la reunion"": ""Hablan sobre una importante desventaja y se consultan con un asesor financiero. Se menciona una próxima reunión y luego se corta la comunicación.""
+    ""Conclusion detallada de la reunion"": ""En la reunión se discutió una importante oportunidad de inversión en el mercado financiero, con la asesoría del experto en abundancia financiera. Se acordó seguir investigando y mantener el contacto para futuras decisiones de inversión."" 
 }"
