@@ -1,14 +1,31 @@
 ,Resumen
-0,"Nombre: Bruno
-Apellido: -
-Empresa: GL Trading
-Email: -
-Interactions: -
-Especialidad: Financial Advisor
-Twitter: -
-Teléfono: -
-País: -
-Ultimo contacto: -
-Sitio Web: -
-LinkedIn: -
-Conclusion detallada de la reunión: En la reunión con Bruno de la empresa GL Trading, se discutió sobre un importante tema relacionado con la asesoría financiera. Bruno mencionó que debía consultar con su asesor de abundancia financiera y luego dio la palabra a GL Trading. La reunión terminó con una discusión sobre el tema y se acordó continuar la conversación en el futuro."
+0,"Highlights
+09:45 🎯: (GL Trading) K
+31:07 💡: (Bruno) In today's video. Are you in? . Yeah Be going over a very important downside. But first, st I must consult with our instant financial abundance advisor over here and I will let him take it away from this moment.""
+35:40 🎯: (GL Trading) Go.
+Transcript
+00:00 Bruno: Bruno
+00:00 GL Trading: GL
+00:07 Bruno: Bruno
+00:10 GL Trading: GL
+00:24 Bruno: Bruno
+00:28 GL Trading: GL
+00:37 Bruno: Bruno
+00:41 GL Trading: GL
+00:44 Bruno: Bruno
+00:46 GL Trading: GL
+
+{
+    ""nombre"": ""Bruno"",
+    ""apellido"": ""Said"",
+    ""empresa"": ""GL Trading"",
+    ""email"": """",
+    ""interactions"": ""2"",
+    ""especialidad"": ""Financial abundance advisor"",
+    ""twitter"": """",
+    ""telefono"": """",
+    ""pais"": """",
+    ""ultimo_contacto"": """",
+    ""sitio_web"": """",
+    ""linkedin"": """",
+    ""conclusion_reunion"": ""In today's"
