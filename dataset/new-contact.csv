@@ -4,18 +4,22 @@
 ""31:07 ��: (Bruno) In today's video. Are you in? . Yeah Be going over a very important downside. But first, st I must consult with our instant financial abundance advisor over here and I will let him take it away from this moment.""
 35:40 ���: (GL Trading) Go.
 
-{
-  ""Nombre"": ""Bruno"",
-  ""Apellido"": ""Liam"",
-  ""Empresa"": ""GL Trading"",
-  ""Email"": """",
-  ""Interactions"": """",
-  ""Especialidad"": ""Instant Financial Abundance"",
-  ""Twitter"": """",
-  ""Teléfono"": """",
-  ""Pais"": """",
-  ""Ultimo contacto"": """",
-  ""Sitio Web"": """",
-  ""LinkedIn"": """",
-  ""Conclusion detallada de la reunion"": ""En el video de hoy, Bruno y GL Trading discutieron sobre una importante desventaja que deben superar. Bruno se refirió a un asesor financiero de abundancia instantánea presente en la reunión.""
-}"
+Tabla JSON:
+
+[
+  {
+    ""Nombre"": ""Bruno"",
+    ""Apellido"": ""Alvarez"",
+    ""Empresa"": ""GL Trading"",
+    ""Email"": """",
+    ""Interactions"": """",
+    ""Especialidad"": ""Financial abundance"",
+    ""Twitter"": """",
+    ""Teléfono"": """",
+    ""Pais"": """",
+    ""Ultimo contacto"": """",
+    ""Sitio Web"": """",
+    ""LinkedIn"": """",
+    ""Conclusion detallada de la reunión"": ""En la reunión de hoy, se discutió un tema importante relacionado con la abundancia financiera y se contó con la participación de un asesor experto en el tema. Se espera continuar las conversaciones en el futuro.""
+  }
+]"
