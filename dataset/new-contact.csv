@@ -1,8 +1,17 @@
 ,Resumen
 0,"
-Tabla JSON:
-
-| Nombre | Apellido | Empresa | Email | Interactions | Especialidad | Twitter | Teléfono | País | ��ltimo contacto | Sitio Web | LinkedIn | Conclusion detallada de la reunión |
-|--------|----------|---------|-------|--------------|--------------|---------|----------|------|----------------|-----------|----------|---------------------------------|
-| Said | Liam | GL Trading | Not available | Not mentioned | Not mentioned | Not mentioned | Not mentioned | Not mentioned | Not mentioned | Not mentioned | Not mentioned | Not mentioned |
-| Bruno | Not mentioned | Not mentioned | Not mentioned | Not mentioned | Not mentioned | Not mentioned | Not mentioned | Not mentioned | Not mentioned | Not mentioned | Not mentioned | In today's video, discussing a downside and consulting with a financial advisor |"
+{
+    ""Nombre"": ""Said"",
+    ""Apellido"": ""Liam"",
+    ""Empresa"": ""GL Trading"",
+    ""Email"": """",
+    ""Interactions"": """",
+    ""Especialidad"": """",
+    ""Twitter"": """",
+    ""Teléfono"": """",
+    ""Pais"": """",
+    ""Ultimo contacto"": """",
+    ""Sitio Web"": """",
+    ""LinkedIn"": """",
+    ""Conclusion detallada de la reunion"": ""En la reunión, Said de GL Trading consultó con Bruno sobre un tema importante relacionado con la abundancia financiera. Bruno mencionó que también tenía un asesor de abundancia financiera presente en la reunión. Se habló sobre una posible asociación y se acordó seguir comunicándose en el futuro."" 
+}"
