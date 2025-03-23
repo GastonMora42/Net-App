@@ -1,11 +1,19 @@
 ,Resumen
-0,"Highlights
-09:45 🎯: (GL Trading) K
-""31:07 💡: (Bruno) In today's video. Are you in? . Yeah Be going over a very important downside. But first, st I must consult with our instant financial abundance advisor over here and I will let him take it away from this moment.""
-35:40 🎯: (GL Trading) Go.
-Transcript
+0,"
+El json generado sería el siguiente:
 
-| Nombre | Apellido | Empresa | Email | Interactions | Especialidad | Twitter | Teléfono | País | Último contacto | Sitio Web | LinkedIn | Conclusiones de la reunión |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| Liam | Said | GL Trading | No disponible | No disponible | No disponible | No disponible | No disponible | No disponible | No disponible | No disponible | No disponible | No disponible |
-| Bruno | No disponible | No disponible | No disponible | No disponible | No disponible | No disponible | No disponible | No disponible | No disponible | No disponible | No disponible | Mención de una reunión importante. |"
+{
+    ""Nombre"": ""Bruno"",
+    ""Apellido"": ""Said"",
+    ""Empresa"": ""GL Trading"",
+    ""Email"": """",
+    ""Interactions"": """",
+    ""Especialidad"": ""Financial Abundance Advisor"",
+    ""Twitter"": """",
+    ""Teléfono"": """",
+    ""Pais"": """",
+    ""Ultimo contacto"": """",
+    ""Sitio Web"": """",
+    ""LinkedIn"": """",
+    ""Conclusion detallada de la reunión"": ""En la reunión, Bruno consultó con el asesor financiero de GL Trading sobre un tema importante relacionado con el video que iba a publicar. Después, se pusieron de acuerdo para hablar en otra ocasión."" 
+}"
