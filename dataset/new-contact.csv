@@ -15,10 +15,13 @@ Transcript
 ""00:44 Bruno: Okay, and by""
 00:46 GL Trading: See. The Manana.
 
+
+
 {
-    ""Nombre"": ""Bruno"",
-    ""Apellido"": ""N/A"",
-    ""Empresa"": ""GL Trading"",
-    ""Email"": ""N/A"",
-    ""Interactions"": ""2"",
-    ""Especialidad"": ""Financial"
+""Nombre"": ""Bruno"",
+""Apellido"": ""GL Trading"",
+""Empresa"": ""N/A"",
+""Email"": ""N/A"",
+""Interactions"": ""N/A"",
+""Especialidad"": ""N/A"",
+"""
