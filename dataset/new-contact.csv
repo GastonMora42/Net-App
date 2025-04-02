@@ -1,17 +1,12 @@
 ,Resumen
 0,"
-{
-    ""Nombre"": ""Said"",
-    ""Apellido"": ""Liam"",
-    ""Empresa"": ""GL Trading"",
-    ""Email"": """",
-    ""Interactions"": """",
-    ""Especialidad"": """",
-    ""Twitter"": """",
-    ""Teléfono"": """",
-    ""Pais"": """",
-    ""Ultimo contacto"": """",
-    ""Sitio Web"": """",
-    ""LinkedIn"": """",
-    ""Conclusion detallada de la reunion"": ""Bruno y Said discutieron sobre una posible oportunidad de inversión en GL Trading. Bruno compartió una idea y Said mostró interés en ella. También se mencionó la posibilidad de trabajar juntos en el futuro. Said fue designado como el asesor financiero de la reunión y Bruno le pidió su opinión sobre el tema. La reunión terminó con una confirmación de que ambos seguirán en contacto y se explorará más la idea en futuras reuniones."" 
-}"
+
+| Nombre | Apellido | Empresa | Email | Interactions | Especialidad | Twitter | Teléfono | País | Último contacto | Sitio web | LinkedIn | Conclusión detallada de la reunión |
+| ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
+| Said | Liam | GL Trading | - | K | - | - | - | - | - | - | - | - |
+| Bruno | - | - | - | - | Instant Financial Abundance Advisor | - | - | - | - | - | - | - |
+| GL Trading | - | - | - | K | - | - | - | - | - | - | - | - |
+| - | - | - | - | - | - | - | - | - | - | - | - | - |
+| - | - | - | - | - | - | - | - | - | - | - | - | - |
+| - | - | - | - | - | - | - | - | - | - | - | - | - |
+| - | - | - | - | - |"
