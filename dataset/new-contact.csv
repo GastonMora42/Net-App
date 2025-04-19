@@ -1,13 +1,17 @@
 ,Resumen
 0,"
-Tabla de datos:
-
-| Nombre | Apellido | Empresa | Email | Interactions | Especialidad | Twitter | Teléfono | País | Último contacto | Sitio web | LinkedIn | Conclusiones de la reunión |
-|--------|----------|---------|-------|--------------|--------------|---------|----------|------|----------------|-----------|----------|---------------------------|
-| Bruno | - | GL Trading | - | - | - | - | - | - | - | - | - | Habla sobre un tema importante |
-| Said | Liam | - | - | - | - | - | - | - | - | - | - | - |
-| - | - | - | - | - | - | - | - | - | - | - | - | - |
-| - | - | - | - | - | - | - | - | - | - | - | - | - |
-| - | - | - | - | - | - | - | - | - | - | - | - | - |
-| - | - | - | - | - | - | - | - | - | - | - | - | - |
-| - | - | - | - | - |"
+{
+    ""Nombre"": ""Bruno"",
+    ""Apellido"": ""Said"",
+    ""Empresa"": ""GL Trading"",
+    ""Email"": """",
+    ""Interactions"": """",
+    ""Especialidad"": ""Financial Advisor"",
+    ""Twitter"": """",
+    ""Teléfono"": """",
+    ""Pais"": """",
+    ""Ultimo contacto"": ""31:07"",
+    ""Sitio Web"": """",
+    ""LinkedIn"": """",
+    ""Conclusion detallada de la reunion"": ""In today's video, Bruno and GL Trading discussed an important downside. Bruno consulted with a financial abundance advisor and then gave GL Trading the floor. The meeting ended with GL Trading saying 'See you tomorrow' and Bruno responding with 'Okay, bye.'""
+}"
